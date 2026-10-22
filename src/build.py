@@ -99,16 +99,16 @@ T = {
         "reviews.starsLabel": "{n} de 5 estrellas",
         "reviews.link": "Leer todas en Google",
         "steps.h2": "Cómo es",
-        "steps.1": "Me contás tu idea en el formulario: zona, tamaño y hasta cuándo estás en Buenos Aires.",
+        "steps.1": "Me contás tu idea en el formulario: qué te querés hacer, el tamaño y si vivís acá o estás de visita.",
         "steps.2": "Se abre WhatsApp con todo ya escrito. Lo mandás y, si tenés una foto de referencia, la sumás ahí.",
         "steps.3": "Te respondo por WhatsApp y vemos diseño, precio y día.",
         "form.h2": "Contame tu idea",
-        "form.lead": "Si estás de viaje, decime qué día te vas así lo tengo en cuenta.",
-        "f.idea": "¿Qué te querés tatuar?",
+        "form.lead": "Son cuatro datos y se abre WhatsApp con tu mensaje listo.",
+        "f.idea": "Corta descripción de lo que te querés hacer",
         "f.idea.ph": "Ej.: una rama de olivo con hojas chiquitas",
         "f.zone": "Zona del cuerpo",
         "f.size": "Tamaño aproximado",
-        "f.stay": "¿Vivís en Buenos Aires o estás de viaje?",
+        "f.stay": "¿Vivís en Buenos Aires o estás de visita?",
         "f.leave": "¿Qué día te vas?",
         "f.name": "Tu nombre",
         "f.phone": "Tu WhatsApp, con código de país",
@@ -120,7 +120,7 @@ T = {
         "err.idea": "Contame qué te querés tatuar.",
         "err.zone": "Elegí una zona.",
         "err.size": "Elegí un tamaño.",
-        "err.name": "Poné tu nombre.",
+        "err.stay": "Decime si vivís acá o estás de visita.",
         "err.phone": "Poné tu WhatsApp con el código de país, por ejemplo +54 9 11 1234 5678.",
         "done.title": "Tu mensaje está listo",
         "done.text": "Si WhatsApp no se abrió, tocá el botón y mandalo desde ahí.",
@@ -135,11 +135,11 @@ T = {
         "foot.privacy": "Privacidad",
         "msg.hello": "Hola Eduardo, te escribo desde la web.",
         "msg.idea": "Idea", "msg.zone": "Zona", "msg.size": "Tamaño",
-        "msg.local": "Vivo en Buenos Aires.", "msg.travel": "Estoy de viaje.", "msg.leave": "Me voy el",
+        "msg.local": "Vivo en Buenos Aires.", "msg.travel": "Estoy de visita.", "msg.leave": "Me voy el",
         "msg.name": "Nombre", "msg.code": "Código",
         "zones": ["Muñeca", "Antebrazo", "Brazo", "Mano o dedos", "Clavícula", "Costillas", "Espalda", "Tobillo", "Otra"],
         "sizes": ["Mini, hasta 5 cm", "Chico, de 5 a 10 cm", "Mediano, de 10 a 15 cm", "Grande, más de 15 cm", "No sé todavía"],
-        "stay": ["Vivo acá", "Estoy de viaje"],
+        "stay": ["Vivo acá", "Estoy de visita"],
     },
     "pt": {
         "meta.title": "Tatuagem fine line em Buenos Aires | EDS Tattoo Studio",
@@ -163,16 +163,16 @@ T = {
         "reviews.starsLabel": "{n} de 5 estrelas",
         "reviews.link": "Ler todas no Google",
         "steps.h2": "Como funciona",
-        "steps.1": "Você me conta sua ideia no formulário: local do corpo, tamanho e até quando fica em Buenos Aires.",
+        "steps.1": "Você me conta sua ideia no formulário: o que quer fazer, o tamanho e se mora aqui ou está de visita.",
         "steps.2": "O WhatsApp abre com tudo já escrito. Você envia e, se tiver uma foto de referência, manda junto.",
         "steps.3": "Eu respondo pelo WhatsApp e combinamos desenho, preço e dia.",
         "form.h2": "Me conta sua ideia",
-        "form.lead": "Se você está viajando, me diz que dia vai embora para eu levar isso em conta.",
-        "f.idea": "O que você quer tatuar?",
+        "form.lead": "São quatro dados e o WhatsApp abre com sua mensagem pronta.",
+        "f.idea": "Breve descrição do que você quer fazer",
         "f.idea.ph": "Ex.: um raminho de oliveira com folhas pequenas",
         "f.zone": "Local do corpo",
         "f.size": "Tamanho aproximado",
-        "f.stay": "Você mora em Buenos Aires ou está viajando?",
+        "f.stay": "Você mora em Buenos Aires ou está de visita?",
         "f.leave": "Que dia você vai embora?",
         "f.name": "Seu nome",
         "f.phone": "Seu WhatsApp, com código do país",
@@ -184,7 +184,7 @@ T = {
         "err.idea": "Me conta o que você quer tatuar.",
         "err.zone": "Escolha um local.",
         "err.size": "Escolha um tamanho.",
-        "err.name": "Coloque seu nome.",
+        "err.stay": "Me diga se você mora aqui ou está de visita.",
         "err.phone": "Coloque seu WhatsApp com o código do país, por exemplo +55 11 91234 5678.",
         "done.title": "Sua mensagem está pronta",
         "done.text": "Se o WhatsApp não abriu, toque no botão e envie por lá.",
@@ -199,11 +199,11 @@ T = {
         "foot.privacy": "Privacidade",
         "msg.hello": "Oi Eduardo, estou escrevendo pelo site.",
         "msg.idea": "Ideia", "msg.zone": "Local", "msg.size": "Tamanho",
-        "msg.local": "Moro em Buenos Aires.", "msg.travel": "Estou viajando.", "msg.leave": "Vou embora em",
+        "msg.local": "Moro em Buenos Aires.", "msg.travel": "Estou de visita.", "msg.leave": "Vou embora em",
         "msg.name": "Nome", "msg.code": "Código",
         "zones": ["Pulso", "Antebraço", "Braço", "Mão ou dedos", "Clavícula", "Costelas", "Costas", "Tornozelo", "Outro"],
         "sizes": ["Mini, até 5 cm", "Pequeno, de 5 a 10 cm", "Médio, de 10 a 15 cm", "Grande, mais de 15 cm", "Ainda não sei"],
-        "stay": ["Moro aqui", "Estou viajando"],
+        "stay": ["Moro aqui", "Estou de visita"],
     },
     "en": {
         "meta.title": "Fine line tattoos in Buenos Aires | EDS Tattoo Studio",
@@ -227,12 +227,12 @@ T = {
         "reviews.starsLabel": "{n} out of 5 stars",
         "reviews.link": "Read them all on Google",
         "steps.h2": "How it works",
-        "steps.1": "Tell me your idea in the form: placement, size, and how long you're in Buenos Aires.",
+        "steps.1": "Tell me your idea in the form: what you want, the size, and whether you live here or are visiting.",
         "steps.2": "WhatsApp opens with everything already written. Send it, and add a reference photo there if you have one.",
         "steps.3": "I reply on WhatsApp and we settle the design, price and day.",
         "form.h2": "Tell me your idea",
-        "form.lead": "If you're traveling, tell me the day you leave so I can plan around it.",
-        "f.idea": "What would you like to get?",
+        "form.lead": "Four quick answers and WhatsApp opens with your message ready.",
+        "f.idea": "Short description of what you want",
         "f.idea.ph": "E.g. an olive branch with tiny leaves",
         "f.zone": "Placement",
         "f.size": "Approximate size",
@@ -248,7 +248,7 @@ T = {
         "err.idea": "Tell me what you'd like to get.",
         "err.zone": "Pick a placement.",
         "err.size": "Pick a size.",
-        "err.name": "Add your name.",
+        "err.stay": "Tell me if you live here or are visiting.",
         "err.phone": "Add your WhatsApp with the country code, for example +1 212 555 0123.",
         "done.title": "Your message is ready",
         "done.text": "If WhatsApp didn't open, tap the button and send it from there.",
@@ -291,16 +291,16 @@ T = {
         "reviews.starsLabel": "{n} von 5 Sternen",
         "reviews.link": "Alle auf Google lesen",
         "steps.h2": "So läuft es ab",
-        "steps.1": "Du erzählst mir deine Idee im Formular: Körperstelle, Größe und wie lange du in Buenos Aires bist.",
+        "steps.1": "Du erzählst mir deine Idee im Formular: was du dir machen lassen willst, die Größe und ob du hier wohnst oder zu Besuch bist.",
         "steps.2": "WhatsApp öffnet sich mit allem schon ausgefüllt. Du schickst es ab und hängst dort ein Referenzbild an, wenn du eins hast.",
         "steps.3": "Ich antworte dir auf WhatsApp und wir klären Motiv, Preis und Termin.",
         "form.h2": "Erzähl mir deine Idee",
-        "form.lead": "Wenn du auf Reisen bist, sag mir, wann du abreist, damit ich es einplanen kann.",
-        "f.idea": "Was möchtest du dir tätowieren lassen?",
+        "form.lead": "Vier Angaben, und WhatsApp öffnet sich mit deiner fertigen Nachricht.",
+        "f.idea": "Kurze Beschreibung, was du dir machen lassen willst",
         "f.idea.ph": "Z. B. ein Olivenzweig mit kleinen Blättern",
         "f.zone": "Körperstelle",
         "f.size": "Ungefähre Größe",
-        "f.stay": "Wohnst du in Buenos Aires oder bist du auf Reisen?",
+        "f.stay": "Wohnst du in Buenos Aires oder bist du zu Besuch?",
         "f.leave": "Wann reist du ab?",
         "f.name": "Dein Name",
         "f.phone": "Deine WhatsApp-Nummer mit Ländervorwahl",
@@ -312,7 +312,7 @@ T = {
         "err.idea": "Erzähl mir, was du dir tätowieren lassen möchtest.",
         "err.zone": "Wähle eine Körperstelle.",
         "err.size": "Wähle eine Größe.",
-        "err.name": "Gib deinen Namen ein.",
+        "err.stay": "Sag mir, ob du hier wohnst oder zu Besuch bist.",
         "err.phone": "Gib deine WhatsApp-Nummer mit Ländervorwahl ein, zum Beispiel +49 151 23456789.",
         "done.title": "Deine Nachricht ist fertig",
         "done.text": "Falls sich WhatsApp nicht geöffnet hat, tippe auf den Button und sende sie von dort.",
@@ -327,11 +327,11 @@ T = {
         "foot.privacy": "Datenschutz",
         "msg.hello": "Hallo Eduardo, ich schreibe dir über deine Website.",
         "msg.idea": "Idee", "msg.zone": "Körperstelle", "msg.size": "Größe",
-        "msg.local": "Ich wohne in Buenos Aires.", "msg.travel": "Ich bin auf Reisen.", "msg.leave": "Ich reise ab am",
+        "msg.local": "Ich wohne in Buenos Aires.", "msg.travel": "Ich bin zu Besuch.", "msg.leave": "Ich reise ab am",
         "msg.name": "Name", "msg.code": "Code",
         "zones": ["Handgelenk", "Unterarm", "Oberarm", "Hand oder Finger", "Schlüsselbein", "Rippen", "Rücken", "Knöchel", "Andere"],
         "sizes": ["Mini, bis 5 cm", "Klein, 5 bis 10 cm", "Mittel, 10 bis 15 cm", "Groß, über 15 cm", "Weiß ich noch nicht"],
-        "stay": ["Ich wohne hier", "Ich bin auf Reisen"],
+        "stay": ["Ich wohne hier", "Ich bin zu Besuch"],
     },
 }
 
@@ -340,10 +340,10 @@ RUNTIME_KEYS = [k for k in T["es"] if k.startswith(("err.", "msg.", "done.", "re
 PRIVACY = {
     "es": {
         "title": "Política de privacidad",
-        "updated": "Actualizada el 21 de octubre de 2026",
+        "updated": "Actualizada el 22 de octubre de 2026",
         "body": [
             ("Quién es el responsable", ["EDS Tattoo Studio, San Martín 569, Microcentro, Ciudad Autónoma de Buenos Aires, Argentina. WhatsApp: " + PHONE_LABEL + "."]),
-            ("Qué datos se piden y para qué", ["Cuando usás el formulario se piden tu nombre, tu número de WhatsApp, tu idea, la zona del cuerpo, el tamaño y, si estás de viaje, el día en que te vas. Se usan para responderte y coordinar el tatuaje. Darlos es voluntario; sin el número de WhatsApp no te podemos responder."]),
+            ("Qué datos se piden y para qué", ["Cuando usás el formulario se piden una corta descripción de lo que te querés hacer, el tamaño aproximado, si vivís en Buenos Aires o estás de visita, y tu número de WhatsApp. Se usan para responderte y coordinar el tatuaje. Darlos es voluntario; sin el número de WhatsApp no te podemos responder."]),
             ("Medición de anuncios", ["Si llegaste por un anuncio de Google, la página guarda en tu navegador el identificador de ese clic durante 90 días. Cuando la medición de Google Ads está activa, al mandar el formulario tu número de WhatsApp se envía a Google cifrado, en un formato que no permite leerlo, para medir qué anuncios traen consultas. Si después te tatuás, podemos informarle a Google ese resultado y su monto, asociado al mismo número cifrado."]),
             ("Con quién se comparten", [
                 ["Google, para medir los anuncios y para mostrar en esta página las reseñas públicas de Google Maps. Para mostrarlas, tu navegador se conecta con Google.",
@@ -357,10 +357,10 @@ PRIVACY = {
     },
     "pt": {
         "title": "Política de privacidade",
-        "updated": "Atualizada em 21 de outubro de 2026",
+        "updated": "Atualizada em 22 de outubro de 2026",
         "body": [
             ("Quem é o responsável", ["EDS Tattoo Studio, San Martín 569, Microcentro, Cidade Autônoma de Buenos Aires, Argentina. WhatsApp: " + PHONE_LABEL + "."]),
-            ("Quais dados pedimos e para quê", ["Quando você usa o formulário, pedimos seu nome, seu número de WhatsApp, sua ideia, o local do corpo, o tamanho e, se estiver viajando, o dia em que vai embora. Usamos esses dados para te responder e combinar a tatuagem. Informá-los é voluntário; sem o número de WhatsApp não conseguimos te responder."]),
+            ("Quais dados pedimos e para quê", ["Quando você usa o formulário, pedimos uma breve descrição do que você quer fazer, o tamanho aproximado, se mora em Buenos Aires ou está de visita, e seu número de WhatsApp. Usamos esses dados para te responder e combinar a tatuagem. Informá-los é voluntário; sem o número de WhatsApp não conseguimos te responder."]),
             ("Medição de anúncios", ["Se você chegou por um anúncio do Google, a página guarda no seu navegador o identificador desse clique por 90 dias. Quando a medição do Google Ads está ativa, ao enviar o formulário seu número de WhatsApp é enviado ao Google criptografado, num formato que não permite lê-lo, para medir quais anúncios trazem contatos. Se depois você fizer a tatuagem, podemos informar ao Google esse resultado e o valor, associados ao mesmo número criptografado."]),
             ("Com quem compartilhamos", [
                 ["Google, para medir os anúncios e para mostrar nesta página as avaliações públicas do Google Maps. Para mostrá-las, seu navegador se conecta ao Google.",
@@ -374,10 +374,10 @@ PRIVACY = {
     },
     "en": {
         "title": "Privacy policy",
-        "updated": "Updated October 21, 2026",
+        "updated": "Updated October 22, 2026",
         "body": [
             ("Who is responsible", ["EDS Tattoo Studio, San Martín 569, Microcentro, City of Buenos Aires, Argentina. WhatsApp: " + PHONE_LABEL + "."]),
-            ("What we ask for and why", ["When you use the form we ask for your name, your WhatsApp number, your idea, the placement, the size and, if you're traveling, the day you leave. We use them to reply to you and arrange your tattoo. Giving them is voluntary; without your WhatsApp number we can't reply."]),
+            ("What we ask for and why", ["When you use the form we ask for a short description of what you want, the approximate size, whether you live in Buenos Aires or are visiting, and your WhatsApp number. We use them to reply to you and arrange your tattoo. Giving them is voluntary; without your WhatsApp number we can't reply."]),
             ("Ad measurement", ["If you arrived through a Google ad, the page stores that click's identifier in your browser for 90 days. When Google Ads measurement is on, sending the form passes your WhatsApp number to Google in encrypted form, which can't be read, to measure which ads bring inquiries. If you later get tattooed, we may report that result and its amount to Google, linked to the same encrypted number."]),
             ("Who we share it with", [
                 ["Google, to measure ads and to show public Google Maps reviews on this page. To show them, your browser connects to Google.",
@@ -391,10 +391,10 @@ PRIVACY = {
     },
     "de": {
         "title": "Datenschutzerklärung",
-        "updated": "Aktualisiert am 21. Oktober 2026",
+        "updated": "Aktualisiert am 22. Oktober 2026",
         "body": [
             ("Verantwortlich", ["EDS Tattoo Studio, San Martín 569, Microcentro, Stadt Buenos Aires, Argentinien. WhatsApp: " + PHONE_LABEL + "."]),
-            ("Welche Daten wir abfragen und wofür", ["Wenn du das Formular nutzt, fragen wir nach deinem Namen, deiner WhatsApp-Nummer, deiner Idee, der Körperstelle, der Größe und, wenn du auf Reisen bist, deinem Abreisetag. Wir nutzen diese Daten, um dir zu antworten und dein Tattoo zu planen. Die Angaben sind freiwillig; ohne WhatsApp-Nummer können wir dir nicht antworten."]),
+            ("Welche Daten wir abfragen und wofür", ["Wenn du das Formular nutzt, fragen wir nach einer kurzen Beschreibung deines Wunschtattoos, der ungefähren Größe, ob du in Buenos Aires wohnst oder zu Besuch bist, und deiner WhatsApp-Nummer. Wir nutzen diese Daten, um dir zu antworten und dein Tattoo zu planen. Die Angaben sind freiwillig; ohne WhatsApp-Nummer können wir dir nicht antworten."]),
             ("Messung von Anzeigen", ["Wenn du über eine Google-Anzeige gekommen bist, speichert die Seite die Kennung dieses Klicks 90 Tage lang in deinem Browser. Wenn die Google-Ads-Messung aktiv ist, wird deine WhatsApp-Nummer beim Absenden des Formulars verschlüsselt an Google übermittelt, in einer Form, die sich nicht lesen lässt, um zu messen, welche Anzeigen Anfragen bringen. Wenn du dich danach tätowieren lässt, können wir Google dieses Ergebnis und den Betrag melden, verknüpft mit derselben verschlüsselten Nummer."]),
             ("Mit wem wir Daten teilen", [
                 ["Google, um Anzeigen zu messen und auf dieser Seite öffentliche Google-Maps-Bewertungen anzuzeigen. Dafür verbindet sich dein Browser mit Google.",
@@ -593,7 +593,7 @@ def home_page(lang, assets):
         for w in WORKS)
     runtime = {"lang": lang, "locale": LOCALE[lang], "apiLang": API_LANG[lang],
                "t": {k: t[k] for k in RUNTIME_KEYS},
-               "zones": t["zones"], "sizes": t["sizes"], "zonesEs": T["es"]["zones"], "sizesEs": T["es"]["sizes"]}
+               "sizes": t["sizes"], "sizesEs": T["es"]["sizes"]}
     runtime_json = json.dumps(runtime, ensure_ascii=False).replace("</", "<\\/")
     body = f"""<body>
 <a class="skip" href="#idea">{esc(t["skip"])}</a>
@@ -642,21 +642,11 @@ def home_page(lang, assets):
 <form class="form" id="lead-form" novalidate>
 <div class="field">
 <label class="label" for="f-idea">{esc(t["f.idea"])}</label>
-<textarea class="input" id="f-idea" name="idea" rows="3" placeholder="{esc(t["f.idea.ph"])}" aria-describedby="err-idea"></textarea>
+<textarea class="input" id="f-idea" name="idea" rows="2" maxlength="300" placeholder="{esc(t["f.idea.ph"])}" aria-describedby="err-idea"></textarea>
 <p class="error" id="err-idea" hidden></p>
 </div>
-<fieldset aria-describedby="err-zone"><legend>{esc(t["f.zone"])}</legend><div class="chips">{chips("zone", t["zones"])}</div><p class="error" id="err-zone" hidden></p></fieldset>
 <fieldset aria-describedby="err-size"><legend>{esc(t["f.size"])}</legend><div class="chips">{chips("size", t["sizes"])}</div><p class="error" id="err-size" hidden></p></fieldset>
-<fieldset><legend>{esc(t["f.stay"])}</legend><div class="chips">{chips("stay", t["stay"])}</div></fieldset>
-<div class="field" id="leave-field" hidden>
-<label class="label" for="f-leave">{esc(t["f.leave"])}</label>
-<input class="input" id="f-leave" name="leave" type="date">
-</div>
-<div class="field">
-<label class="label" for="f-name">{esc(t["f.name"])}</label>
-<input class="input" id="f-name" name="name" type="text" autocomplete="name" aria-describedby="err-name">
-<p class="error" id="err-name" hidden></p>
-</div>
+<fieldset aria-describedby="err-stay"><legend>{esc(t["f.stay"])}</legend><div class="chips">{chips("stay", t["stay"])}</div><p class="error" id="err-stay" hidden></p></fieldset>
 <div class="field">
 <label class="label" for="f-phone">{esc(t["f.phone"])}</label>
 <input class="input" id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="{esc(t["f.phone.ph"])}" aria-describedby="err-phone">

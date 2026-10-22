@@ -111,10 +111,8 @@
     return n ? Number(n.value) : -1;
   }
 
-  function syncStay() { $("leave-field").hidden = checkedIdx("stay") !== 1; }
-
   /* Errores del formulario */
-  const FIELD_INPUT = { idea: "f-idea", name: "f-name", phone: "f-phone" };
+  const FIELD_INPUT = { idea: "f-idea", phone: "f-phone" };
   function showError(field, key) {
     const n = $("err-" + field);
     n.textContent = t(key);
@@ -143,21 +141,17 @@
 
   function onSubmit(e) {
     e.preventDefault();
-    ["idea", "zone", "size", "name", "phone"].forEach(clearError);
+    ["idea", "size", "stay", "phone"].forEach(clearError);
 
     const idea = $("f-idea").value.trim();
-    const zoneI = checkedIdx("zone");
     const sizeI = checkedIdx("size");
     const stayI = checkedIdx("stay");
-    const leave = stayI === 1 ? $("f-leave").value : "";
-    const name = $("f-name").value.trim();
     const phone = normPhone($("f-phone").value);
 
     const errs = [];
     if (!idea) errs.push(["idea", "err.idea"]);
-    if (zoneI < 0) errs.push(["zone", "err.zone"]);
     if (sizeI < 0) errs.push(["size", "err.size"]);
-    if (!name) errs.push(["name", "err.name"]);
+    if (stayI < 0) errs.push(["stay", "err.stay"]);
     if (!phone) errs.push(["phone", "err.phone"]);
     if (errs.length) {
       errs.forEach(([f, k]) => showError(f, k));
@@ -170,12 +164,11 @@
       t("msg.hello"),
       "",
       t("msg.idea") + ": " + idea,
-      t("msg.zone") + ": " + P.zones[zoneI],
       t("msg.size") + ": " + P.sizes[sizeI]
     ];
     if (stayI === 0) lines.push(t("msg.local"));
-    if (stayI === 1) lines.push(leave ? t("msg.travel") + " " + t("msg.leave") + " " + fmtDate(leave) + "." : t("msg.travel"));
-    lines.push(t("msg.name") + ": " + name, t("msg.code") + ": " + ref);
+    if (stayI === 1) lines.push(t("msg.travel"));
+    lines.push(t("msg.code") + ": " + ref);
     const text = lines.join("\n");
     const waUrl = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(text);
 
@@ -191,13 +184,10 @@
       ref,
       created_at: new Date().toISOString(),
       lang: P.lang,
-      name,
       phone,
       idea,
-      zone: P.zonesEs[zoneI],
       size: P.sizesEs[sizeI],
-      stay: stayI === 1 ? "de viaje" : stayI === 0 ? "vive en Buenos Aires" : "",
-      leave_date: leave,
+      stay: stayI === 1 ? "de visita" : stayI === 0 ? "vive en Buenos Aires" : "",
       click_type: click ? click.type : "",
       click_id: click ? click.id : "",
       click_at: click ? new Date(click.ts).toISOString() : "",
@@ -346,22 +336,16 @@
   }
 
   /* Arranque */
-  try {
-    const now = new Date();
-    $("f-leave").min = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
-  } catch (e) { /* sin fecha mínima */ }
   const form = $("lead-form");
   form.addEventListener("submit", onSubmit);
   form.addEventListener("change", (e) => {
     const n = e.target.name;
-    if (n === "stay") syncStay();
-    if (n === "zone" || n === "size") clearError(n);
+    if (n === "size" || n === "stay") clearError(n);
   });
   form.addEventListener("input", (e) => {
     const n = e.target.name;
-    if (n === "idea" || n === "name" || n === "phone") clearError(n);
+    if (n === "idea" || n === "phone") clearError(n);
   });
-  syncStay();
   initCopy();
   initSticky();
   initReviews();
