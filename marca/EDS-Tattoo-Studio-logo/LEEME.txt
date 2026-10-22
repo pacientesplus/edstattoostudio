@@ -11,21 +11,19 @@ QUÉ USAR DÓNDE
 - Instagram y Facebook (foto de perfil): redes/instagram-facebook-perfil-1080.png.
 - WhatsApp Business (foto de perfil): redes/whatsapp-perfil-640.png.
   Las fotos de perfil están pensadas para el recorte en círculo: el logo queda adentro.
-- Imprenta (cartel, tarjetas, stickers): imprenta/*.pdf o vector/*.svg. Son vectores: se agrandan sin perder calidad.
+- Imprenta (cartel, tarjetas, stickers, sello): imprenta/*.pdf o vector/*.svg. Son vectores: se agrandan sin perder calidad.
 - Cualquier otro uso: png/ (fondo transparente, 1024 y 2048 px de ancho).
 
-VERSIONES
-- color: letras negras y línea violeta, para fondos claros.
-- color-fondo-oscuro: letras blancas y línea violeta clara, para fondos oscuros.
-- negro / blanco: una sola tinta (sellos, grabados, vinilo de un color).
-- apilado: "eds" arriba y "tattoo studio" abajo. horizontal: todo en una línea.
-- isotipo-e: la "e" sola en círculo, para tamaños muy chicos.
+ARMADOS
+- apilado: "EDS", la línea y "TATTOO STUDIO" abajo. Es el principal.
+- horizontal: "EDS" y "TATTOO STUDIO" al costado, para espacios bajos y anchos (encabezado de la página, carteles largos).
+- monograma: "EDS" con la línea, sin texto chico, para tamaños donde "TATTOO STUDIO" no se leería.
+- isotipo-e: la "E" sola en círculo, para tamaños muy chicos (favicon).
 
-COLORES
-- Tinta: #000000
-- Violeta esténcil: #5B3FB3 (sobre oscuro: #A897F2)
-- Papel: #FCFCFE
+TINTAS
+- negro: sobre fondos claros. blanco: sobre fondos oscuros o fotos.
+- Color: solo negro #000000 (o blanco #FFFFFF). Una sola tinta: sirve para vinilo, sello, grabado y bordado.
 
-LETRA
-- "tattoo studio": Josefin Sans Light (licencia libre SIL OFL), ya convertida a trazos en los archivos.
-- Textos de la página: Figtree.
+LETRAS
+- "EDS": Bodoni Moda. "TATTOO STUDIO": Josefin Sans. Las dos con licencia libre SIL OFL (textos de licencia incluidos)
+  y ya convertidas a trazos en los archivos.

@@ -2,8 +2,7 @@
    the steps and the form. One needle-thin stencil line under the headline, and every photo
    carries a round loupe on the line. */
 
-@font-face{font-family:"Josefin Sans";font-style:normal;font-weight:300;font-display:swap;src:url("../fonts/josefin-sans-latin-300-normal.woff2") format("woff2")}
-@font-face{font-family:"Josefin Sans";font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/josefin-sans-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:500;font-display:swap;src:url("../fonts/bodoni-moda-latin-500-normal.woff2") format("woff2")}
 @font-face{font-family:"Figtree";font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/figtree-latin-400-normal.woff2") format("woff2")}
 @font-face{font-family:"Figtree";font-style:normal;font-weight:500;font-display:swap;src:url("../fonts/figtree-latin-500-normal.woff2") format("woff2")}
 @font-face{font-family:"Figtree";font-style:normal;font-weight:600;font-display:swap;src:url("../fonts/figtree-latin-600-normal.woff2") format("woff2")}
@@ -11,14 +10,14 @@
 :root{
   --paper:#FCFCFE;      /* transfer paper */
   --ink:#000000;        /* tattoo ink */
-  --stencil:#5B3FB3;    /* thermal stencil purple */
+  --stencil:#000000;    /* accent = ink, single-ink brand like the logo */
   --graphite:#5E5B6B;   /* pencil sketch */
   --hairline:#DEDCE6;
   --wash:#F2F0F7;
   --on-ink:#FFFFFF;
   --alert:#B42318;
   --gm-attr:#5E5E5E;    /* Google Maps attribution colour, per Google's rules */
-  --font-display:"Josefin Sans","Futura","Century Gothic","Avenir Next","Trebuchet MS",sans-serif;
+  --font-display:"Bodoni Moda","Didot","Bodoni 72","Bodoni MT","Times New Roman",serif;
   --font-body:"Figtree","Segoe UI","Helvetica Neue",Arial,sans-serif;
   --step--1:.875rem;
   --step-0:1.0625rem;
@@ -29,7 +28,7 @@
 }
 @media (prefers-color-scheme: dark){
   :root{
-    --paper:#000000; --ink:#F3F2F7; --stencil:#A897F2; --graphite:#A9A6B6;
+    --paper:#000000; --ink:#F3F2F7; --stencil:#F3F2F7; --graphite:#A9A6B6;
     --hairline:#2B2934; --wash:#121119; --on-ink:#000000; --alert:#F97066; --gm-attr:#FFFFFF;
     color-scheme:dark;
   }
@@ -55,7 +54,7 @@ img{max-width:100%}
 a{color:inherit;text-decoration-color:var(--stencil);text-decoration-thickness:1px;text-underline-offset:3px}
 a:hover{text-decoration-thickness:2px}
 :focus-visible{outline:2px solid var(--stencil);outline-offset:3px}
-h1,h2,h3{font-family:var(--font-display);font-weight:300;text-wrap:balance;margin:0}
+h1,h2,h3{font-family:var(--font-display);font-weight:500;text-wrap:balance;margin:0}
 p{margin:0}
 .skip{position:absolute;left:-9999px;top:8px;z-index:30;background:var(--ink);color:var(--on-ink);padding:10px 14px;border-radius:4px}
 .skip:focus{left:max(16px, env(safe-area-inset-left, 0px))}
@@ -78,16 +77,12 @@ p{margin:0}
 .hero-photo img{display:block;width:100%;height:100%;object-fit:cover}
 .hero-photo .loupe{width:30%;right:12px;bottom:12px;--zoom:820%}
 .hero-text{display:grid;gap:16px;align-content:center;min-width:0}
-h1{font-size:var(--step-3);line-height:1.04;letter-spacing:-.015em}
-.needle{display:block;width:min(100%, 380px);height:24px;overflow:visible}
-.needle path{
-  fill:none;stroke:var(--stencil);stroke-width:1.5;stroke-linecap:round;vector-effect:non-scaling-stroke;
-  stroke-dasharray:1;stroke-dashoffset:0;animation:draw 1.6s cubic-bezier(.4,0,.2,1) .15s both;
-}
-@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+h1{font-size:var(--step-3);line-height:1.06;letter-spacing:-.01em}
+.rule{display:block;width:min(100%, 380px);height:1px;background:var(--ink);transform-origin:left center;animation:grow .9s cubic-bezier(.4,0,.2,1) .15s both}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .lead{font-size:var(--step-1);line-height:1.5;max-width:34ch}
 .proof{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;color:var(--graphite);font-size:var(--step--1)}
-.stars{color:var(--stencil);letter-spacing:2px}
+.stars{color:var(--ink);letter-spacing:2px}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 22px;
   background:var(--ink);color:var(--on-ink);border:1px solid var(--ink);border-radius:4px;
@@ -141,7 +136,7 @@ h3{font-size:1.4rem;font-weight:400;line-height:1.2}
 /* steps: a real sequence */
 .steps{list-style:none;margin:0;padding:0;display:grid;gap:22px;counter-reset:step;max-width:62ch}
 .steps li{display:grid;grid-template-columns:2.4rem minmax(0,1fr);gap:14px;align-items:baseline;counter-increment:step}
-.steps li::before{content:counter(step);font-family:var(--font-display);font-weight:300;font-size:2.1rem;line-height:1;color:var(--stencil)}
+.steps li::before{content:counter(step);font-family:var(--font-display);font-weight:500;font-size:2.1rem;line-height:1;color:var(--ink)}
 
 /* form */
 .form{display:grid;gap:26px;max-width:640px}
@@ -219,5 +214,5 @@ textarea.input{min-height:88px;resize:vertical;line-height:1.5}
 
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
-  .needle path{animation:none}
+  .rule{animation:none}
 }
