@@ -201,8 +201,8 @@ def main():
 
         def cover(w, h, logo_w):
             return f"""<!doctype html><html><head><meta charset="utf-8"><style>
-@font-face{{font-family:F;font-weight:400;src:url("file://{FONTS}/figtree-latin-400-normal.woff2")}}
-@font-face{{font-family:F;font-weight:600;src:url("file://{FONTS}/figtree-latin-600-normal.woff2")}}
+@font-face{{font-family:F;font-weight:400;src:url("file://{FONTS}/montserrat-latin-400-normal.woff2")}}
+@font-face{{font-family:F;font-weight:600;src:url("file://{FONTS}/montserrat-latin-600-normal.woff2")}}
 html,body{{margin:0;width:{w}px;height:{h}px;background:{PAPER};overflow:hidden}}
 .wrap{{display:grid;grid-template-columns:{w // 2}px {w - w // 2}px;height:{h}px}}
 .photo{{background:url("file://{hero}") center 60%/cover no-repeat}}

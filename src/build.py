@@ -41,8 +41,8 @@ LANG_LINE = {
 }
 ALT_PREFIX = {"es": "Tatuaje: ", "pt": "Tatuagem: ", "en": "Tattoo: ", "de": "Tattoo: "}
 HERO_SIZES = "(min-width: 900px) 540px, 100vw"
-WEB_FONTS = ["josefin-sans-latin-400-normal.woff2", "figtree-latin-400-normal.woff2", "figtree-latin-500-normal.woff2",
-             "figtree-latin-600-normal.woff2", "OFL-JosefinSans.txt", "OFL-Figtree.txt"]
+WEB_FONTS = ["montserrat-latin-400-normal.woff2", "montserrat-latin-500-normal.woff2", "montserrat-latin-600-normal.woff2",
+             "OFL-Montserrat.txt"]
 
 
 def header_logo():
@@ -498,8 +498,8 @@ def head(lang_attr, title, desc, path, alternates, assets, og_locale, og_alt, ex
 <meta property="og:image:alt" content="{esc(og_alt)}">
 <meta property="og:locale" content="{og_locale}">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preload" href="/assets/fonts/josefin-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/fonts/figtree-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/montserrat-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/montserrat-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 {extra}<link rel="stylesheet" href="{assets['css']}">
 <script src="{assets['js']}" defer></script>
 </head>
@@ -586,9 +586,8 @@ def home_page(lang, assets):
     runtime_json = json.dumps(runtime, ensure_ascii=False).replace("</", "<\\/")
     body = f"""<body>
 <a class="skip" href="#idea">{esc(t["skip"])}</a>
-<div class="wrap">
+<div class="band"><div class="wrap">
 {top(lang, paths, path)}
-<main id="inicio">
 <section class="hero" aria-labelledby="h-hero">
 <figure class="hero-photo" data-loupe>{photo(HERO, lang, assets, "hero", eager=True)}</figure>
 <div class="hero-text">
@@ -598,6 +597,8 @@ def home_page(lang, assets):
 <a class="btn" id="hero-cta" href="#idea">{esc(t["hero.cta"])}</a>
 </div>
 </section>
+</div></div>
+<main id="inicio" class="wrap">
 
 <section class="block" id="trabajos" aria-labelledby="h-work">
 <div class="block-head"><h2 id="h-work">{esc(t["work.h2"])}</h2><p class="sub">{esc(t["work.lead"])}</p></div>
@@ -626,6 +627,7 @@ def home_page(lang, assets):
 
 <section class="block" id="idea" aria-labelledby="h-form">
 <div class="block-head"><h2 id="h-form">{esc(t["form.h2"])}</h2><p class="sub">{esc(t["form.lead"])}</p></div>
+<div class="form-card">
 <form class="form" id="lead-form" novalidate>
 <div class="field">
 <label class="label" for="f-idea">{esc(t["f.idea"])}</label>
@@ -665,6 +667,7 @@ def home_page(lang, assets):
 <button type="button" class="btn btn-line" id="done-copy">{esc(t["done.copy"])}</button>
 </div>
 </div>
+</div>
 </section>
 
 <section class="block" id="donde" aria-labelledby="h-place">
@@ -673,7 +676,7 @@ def home_page(lang, assets):
 <div class="links"><a href="{esc(MAPS_DIRECTIONS)}" target="_blank" rel="noopener">{esc(t["place.link"])}</a></div>
 </section>
 </main>
-{foot(lang)}</div>
+<div class="wrap">{foot(lang)}</div>
 <div class="sticky" id="sticky" hidden><a class="btn" href="#idea">{esc(t["sticky"])}</a></div>
 <script id="eds-page" type="application/json">{runtime_json}</script>
 </body>
@@ -691,7 +694,7 @@ def chooser_page(assets):
     title = "EDS Tattoo Studio | Fine line tattoos in Buenos Aires"
     desc = "Fine line tattoos in downtown Buenos Aires. Tatuajes fine line en Microcentro. Tatuagens fine line em Buenos Aires. Fine-Line-Tattoos in Buenos Aires."
     body = f"""<body>
-<div class="wrap">
+<div class="band band-full"><div class="wrap">
 <header class="top"><a class="mark" href="/">{header_logo()}</a></header>
 <main>
 <section class="choose" aria-labelledby="h-choose">
@@ -709,7 +712,7 @@ def chooser_page(assets):
 <span>{BRAND}</span>
 <a href="{WA_URL}" target="_blank" rel="noopener">WhatsApp {PHONE_LABEL}</a>
 </footer>
-</div>
+</div></div>
 </body>
 </html>
 """
