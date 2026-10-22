@@ -3,7 +3,8 @@
 
 Uso:  python3 src/build.py
 Cada idioma tiene su propia dirección (/es/, /pt/, /en/, /de/) con el texto ya escrito en el HTML,
-como pide Google para sitios en varios idiomas; la portada (/) elige idioma sin redirigir.
+como pide Google para sitios en varios idiomas. La portada (/) lleva a /es/ con una redirección 301 igual para
+todos (functions/index.js, conserva el gclid); no se adivina el idioma por el teléfono.
 """
 import hashlib
 import html
@@ -34,12 +35,7 @@ OG_LOCALE = {"es": "es_AR", "pt": "pt_BR", "en": "en_US", "de": "de_DE"}
 API_LANG = {"es": "es", "pt": "pt-BR", "en": "en", "de": "de"}
 PRIVACY_SLUG = {"es": "privacidad", "pt": "privacidade", "en": "privacy", "de": "datenschutz"}
 LANG_NAME = {"es": "Español", "pt": "Português", "en": "English", "de": "Deutsch"}
-LANG_LINE = {
-    "es": "Tatuajes fine line en Buenos Aires",
-    "pt": "Tatuagens fine line em Buenos Aires",
-    "en": "Fine line tattoos in Buenos Aires",
-    "de": "Fine-Line-Tattoos in Buenos Aires",
-}
+NAV_ORDER = ["es", "en", "pt", "de"]  # orden de la barra de idiomas
 ALT_PREFIX = {"es": "Tatuaje: ", "pt": "Tatuagem: ", "en": "Tattoo: ", "de": "Tattoo: "}
 HERO_SIZES = "(min-width: 900px) 540px, 100vw"
 WEB_FONTS = ["montserrat-latin-400-normal.woff2", "montserrat-latin-500-normal.woff2", "montserrat-latin-600-normal.woff2",
@@ -349,7 +345,7 @@ PRIVACY = {
             ("Con quién se comparten", [
                 ["Google, para medir las visitas (Google Analytics), medir los anuncios (Google Ads) y mostrar en esta página las reseñas públicas de Google Maps. Para mostrarlas, tu navegador se conecta con Google.",
                  "WhatsApp (Meta), cuando mandás el mensaje desde tu teléfono.",
-                 "Cloudflare, que aloja esta página."],
+                 "Cloudflare, que aloja esta página y guarda las consultas del formulario.", "Resend, que le manda al estudio un correo con cada consulta."],
                 "Estos proveedores pueden tratar datos fuera de Argentina."]),
             ("Cuánto tiempo se guardan", ["Mientras sean necesarios para responderte, coordinar el tatuaje y medir los anuncios. Podés pedir que los borremos cuando quieras."]),
             ("Tus derechos", ["Podés pedir acceso, corrección, actualización o eliminación de tus datos escribiendo al WhatsApp de arriba. Tenés derecho a acceder a ellos en forma gratuita cada seis meses, salvo que acredites un interés legítimo para hacerlo antes (artículo 14, inciso 3, de la Ley 25.326). La Agencia de Acceso a la Información Pública, como órgano de control de la Ley 25.326, atiende las denuncias y reclamos de quienes vean afectados sus derechos por incumplimiento de las normas de protección de datos personales."]),
@@ -366,7 +362,7 @@ PRIVACY = {
             ("Com quem compartilhamos", [
                 ["Google, para medir as visitas (Google Analytics), medir os anúncios (Google Ads) e mostrar nesta página as avaliações públicas do Google Maps. Para mostrá-las, seu navegador se conecta ao Google.",
                  "WhatsApp (Meta), quando você envia a mensagem pelo seu celular.",
-                 "Cloudflare, que hospeda esta página."],
+                 "Cloudflare, que hospeda esta página e guarda as consultas do formulário.", "Resend, que envia ao estúdio um e-mail com cada consulta."],
                 "Esses fornecedores podem tratar dados fora da Argentina."]),
             ("Por quanto tempo guardamos", ["Enquanto forem necessários para te responder, combinar a tatuagem e medir os anúncios. Você pode pedir que os apaguemos quando quiser."]),
             ("Seus direitos", ["Você pode pedir acesso, correção, atualização ou exclusão dos seus dados pelo WhatsApp acima. Você tem direito de acessá-los gratuitamente a cada seis meses, salvo se comprovar um interesse legítimo para fazê-lo antes (artigo 14, inciso 3, da Lei 25.326 da Argentina). A Agencia de Acceso a la Información Pública, como órgão de controle da Lei 25.326, recebe denúncias e reclamações de quem tiver seus direitos afetados pelo descumprimento das normas de proteção de dados pessoais."]),
@@ -383,7 +379,7 @@ PRIVACY = {
             ("Who we share it with", [
                 ["Google, to measure visits (Google Analytics), measure ads (Google Ads) and show public Google Maps reviews on this page. To show them, your browser connects to Google.",
                  "WhatsApp (Meta), when you send the message from your phone.",
-                 "Cloudflare, which hosts this page."],
+                 "Cloudflare, which hosts this page and stores the form inquiries.", "Resend, which emails the studio each inquiry."],
                 "These providers may process data outside Argentina."]),
             ("How long we keep it", ["As long as it's needed to reply to you, arrange your tattoo and measure the ads. You can ask us to delete it at any time."]),
             ("Your rights", ["You can ask to access, correct, update or delete your data by writing to the WhatsApp above. You have the right to access it free of charge every six months, unless you show a legitimate interest in doing so sooner (Article 14, section 3, of Argentina's Law 25,326). The Agencia de Acceso a la Información Pública, as the authority in charge of Law 25,326, handles complaints from anyone whose rights are affected by a breach of the personal data protection rules."]),
@@ -400,7 +396,7 @@ PRIVACY = {
             ("Mit wem wir Daten teilen", [
                 ["Google, um Besuche (Google Analytics) und Anzeigen (Google Ads) zu messen und auf dieser Seite öffentliche Google-Maps-Bewertungen anzuzeigen. Dafür verbindet sich dein Browser mit Google.",
                  "WhatsApp (Meta), wenn du die Nachricht von deinem Handy sendest.",
-                 "Cloudflare, das diese Seite hostet."],
+                 "Cloudflare, das diese Seite hostet und die Anfragen aus dem Formular speichert.", "Resend, das dem Studio jede Anfrage per E-Mail schickt."],
                 "Diese Anbieter können Daten außerhalb Argentiniens verarbeiten."]),
             ("Wie lange wir Daten speichern", ["So lange, wie es nötig ist, um dir zu antworten, dein Tattoo zu planen und die Anzeigen zu messen. Du kannst jederzeit verlangen, dass wir sie löschen."]),
             ("Deine Rechte", ["Du kannst über das WhatsApp oben Auskunft, Berichtigung, Aktualisierung oder Löschung deiner Daten verlangen. Du hast das Recht, alle sechs Monate kostenlos Auskunft zu erhalten, sofern du kein berechtigtes Interesse an einer früheren Auskunft nachweist (Artikel 14, Absatz 3 des argentinischen Gesetzes 25.326). Die Agencia de Acceso a la Información Pública ist als Aufsichtsbehörde für das Gesetz 25.326 für Beschwerden zuständig, wenn Rechte durch Verstöße gegen den Datenschutz verletzt werden."]),
@@ -427,7 +423,7 @@ def h8(path):
 def write(rel, text):
     path = os.path.join(OUT, rel)
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, "w", encoding="utf-8") as f:
+    with open(path, "w", encoding="utf-8", newline="\n") as f:  # igual en Windows que en Linux
         f.write(text)
 
 
@@ -538,23 +534,23 @@ def ld_json(path_url, lang=None):
 def langs_nav(lang, paths):
     t = T[lang]
     items = []
-    for l in LANGS:
+    for l in NAV_ORDER:
         cur = ' aria-current="page"' if l == lang else ""
-        items.append(f'<a href="{paths[l]}" hreflang="{l}" lang="{HTML_LANG[l]}"{cur}>{l.upper()}</a>')
+        items.append(f'<a href="{paths[l]}" hreflang="{l}" lang="{HTML_LANG[l]}"{cur}>{LANG_NAME[l]}</a>')
     return f'<nav class="langs" aria-label="{esc(t["nav.lang"])}">' + "".join(items) + "</nav>"
 
 
 def top(lang, paths, home):
-    return f"""<header class="top">
+    return f"""{langs_nav(lang, paths)}
+<header class="top">
 <a class="mark" href="{home}">{header_logo()}</a>
-{langs_nav(lang, paths)}
 </header>
 """
 
 
 def foot(lang):
     t = T[lang]
-    others = "".join(f'<a href="/{l}/" hreflang="{l}" lang="{HTML_LANG[l]}">{LANG_NAME[l]}</a>' for l in LANGS)
+    others = "".join(f'<a href="/{l}/" hreflang="{l}" lang="{HTML_LANG[l]}">{LANG_NAME[l]}</a>' for l in NAV_ORDER)
     return f"""<footer class="foot">
 <span>{BRAND}</span>
 <a href="{esc(MAPS_REVIEWS)}" target="_blank" rel="noopener">{esc(t["place.addr"])}</a>
@@ -586,7 +582,8 @@ def home_page(lang, assets):
     t = T[lang]
     path = "/%s/" % lang
     paths = {l: "/%s/" % l for l in LANGS}
-    alternates = [(l, "/%s/" % l) for l in LANGS] + [("x-default", "/")]
+    # x-default es /es/: la portada (/) ya no es una página, redirige ahí
+    alternates = [(l, "/%s/" % l) for l in LANGS] + [("x-default", "/es/")]
     extra = hero_preload(assets) + ld_json(path, lang)
     works = "\n".join(
         f'<figure class="work"><div class="work-photo" data-loupe>{photo(w, lang, assets, "work")}</div><figcaption>{esc(w["cap"][lang])}</figcaption></figure>'
@@ -686,41 +683,6 @@ def home_page(lang, assets):
     return head(HTML_LANG[lang], t["meta.title"], t["meta.desc"], path, alternates, assets, OG_LOCALE[lang], t["og.alt"], extra) + body
 
 
-def chooser_page(assets):
-    extra = hero_preload(assets) + ld_json("/")
-    alternates = [(l, "/%s/" % l) for l in LANGS] + [("x-default", "/")]
-    items = "\n".join(
-        f'<li><a href="/{l}/" hreflang="{l}" lang="{HTML_LANG[l]}" data-lang="{l}"><span class="lang-name">{LANG_NAME[l]}</span><span class="lang-line">{esc(LANG_LINE[l])}</span></a></li>'
-        for l in LANGS)
-    title = "EDS Tattoo Studio | Fine line tattoos in Buenos Aires"
-    desc = "Fine line tattoos in downtown Buenos Aires. Tatuajes fine line en Microcentro. Tatuagens fine line em Buenos Aires. Fine-Line-Tattoos in Buenos Aires."
-    body = f"""<body>
-<div class="band band-full"><div class="wrap">
-<header class="top"><a class="mark" href="/">{header_logo()}</a></header>
-<main>
-<section class="choose" aria-labelledby="h-choose">
-<figure class="hero-photo" data-loupe>{photo(HERO, "en", assets, "hero", eager=True)}</figure>
-<div class="choose-head">
-<h1 id="h-choose">{BRAND}</h1>
-<p class="sub">San Martín 569, Microcentro, Buenos Aires</p>
-<ul class="choose-list">
-{items}
-</ul>
-</div>
-</section>
-</main>
-<footer class="foot">
-<span>{BRAND}</span>
-<a href="{WA_URL}" target="_blank" rel="noopener">WhatsApp {PHONE_LABEL}</a>
-<nav aria-label="Privacy"><a href="/en/privacy/">Privacy</a><button type="button" class="linkish" data-cookie-settings>Cookies</button></nav>
-</footer>
-</div></div>
-</body>
-</html>
-"""
-    return head("en", title, desc, "/", alternates, assets, "en_US", T["en"]["og.alt"], extra) + body
-
-
 def privacy_page(lang, assets):
     t = T[lang]
     p = PRIVACY[lang]
@@ -772,7 +734,7 @@ def not_found_page(assets):
 # ---------- site files ----------
 def sitemap():
     groups = [{l: "/%s/" % l for l in LANGS}, {l: "/%s/%s/" % (l, PRIVACY_SLUG[l]) for l in LANGS}]
-    defaults = ["/", groups[1]["en"]]
+    defaults = ["/es/", groups[1]["en"]]
     out = ['<?xml version="1.0" encoding="UTF-8"?>',
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
     for g, xdef in zip(groups, defaults):
@@ -813,7 +775,7 @@ Sitemap: %s/sitemap.xml
 """ % SITE
 
 MANIFEST = json.dumps({
-    "name": BRAND, "short_name": "EDS Tattoo", "start_url": "/", "display": "browser",
+    "name": BRAND, "short_name": "EDS Tattoo", "start_url": "/es/", "display": "browser",
     "background_color": "#FCFCFE", "theme_color": "#000000",
     "icons": [{"src": "/icon-192.png", "sizes": "192x192", "type": "image/png"},
               {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png"}],
@@ -822,7 +784,6 @@ MANIFEST = json.dumps({
 
 def main():
     assets = build_assets()
-    write("index.html", chooser_page(assets))
     for l in LANGS:
         write("%s/index.html" % l, home_page(l, assets))
         write("%s/%s/index.html" % (l, PRIVACY_SLUG[l]), privacy_page(l, assets))

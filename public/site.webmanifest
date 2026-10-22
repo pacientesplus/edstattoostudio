@@ -1,7 +1,7 @@
 {
   "name": "EDS Tattoo Studio",
   "short_name": "EDS Tattoo",
-  "start_url": "/",
+  "start_url": "/es/",
   "display": "browser",
   "background_color": "#FCFCFE",
   "theme_color": "#000000",

@@ -11,7 +11,7 @@
     visitorValue: 3,             // valor de una consulta de visitante (vale más: es el cliente que más interesa)
     localValue: 1,               // valor de una consulta local
     conversionCurrency: "USD",   // moneda de esos valores (son pesos relativos, no plata real)
-    leadEndpoint: "",            // FALTA: dirección que guarda cada consulta (código, clic de Google, WhatsApp)
+    leadEndpoint: "/api/consulta", // guarda cada consulta y avisa por correo (functions/api/consulta.js)
     googleMapsKey: "",           // FALTA: clave de Google Maps Platform, restringida a edstattoostudio.com
     placeId: "ChIJSbT071_LvJURa8aGV8tGUIY",                 // ID del estudio en Google Maps; sin él se busca una vez por nombre y dirección
     placeQuery: "EDS Tattoo, San Martín 569, Buenos Aires"
@@ -41,16 +41,6 @@
       if (document.readyState === "complete") upgrade(); else window.addEventListener("load", upgrade, { once: true });
     }
   });
-
-  /* Portada: marca el idioma del teléfono, sin redirigir (Google pide no adivinar el idioma con redirecciones) */
-  const chooser = document.querySelector(".choose-list");
-  if (chooser) {
-    const navs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ""])
-      .map((s) => String(s).slice(0, 2).toLowerCase());
-    const pick = navs.find((n) => n === "es" || n === "pt" || n === "en");
-    const a = pick && chooser.querySelector('a[data-lang="' + pick + '"]');
-    if (a) a.classList.add("suggested");
-  }
 
   /* Guardar el clic del anuncio de Google (gclid, gbraid o wbraid) por 90 días, en cualquier página */
   /* Consentimiento (modo de consentimiento v2 de Google).
