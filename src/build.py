@@ -41,8 +41,8 @@ LANG_LINE = {
 }
 ALT_PREFIX = {"es": "Tatuaje: ", "pt": "Tatuagem: ", "en": "Tattoo: ", "de": "Tattoo: "}
 HERO_SIZES = "(min-width: 900px) 540px, 100vw"
-WEB_FONTS = ["bodoni-moda-latin-500-normal.woff2", "figtree-latin-400-normal.woff2", "figtree-latin-500-normal.woff2",
-             "figtree-latin-600-normal.woff2", "OFL-BodoniModa.txt", "OFL-Figtree.txt"]
+WEB_FONTS = ["josefin-sans-latin-400-normal.woff2", "figtree-latin-400-normal.woff2", "figtree-latin-500-normal.woff2",
+             "figtree-latin-600-normal.woff2", "OFL-JosefinSans.txt", "OFL-Figtree.txt"]
 
 
 def header_logo():
@@ -498,7 +498,7 @@ def head(lang_attr, title, desc, path, alternates, assets, og_locale, og_alt, ex
 <meta property="og:image:alt" content="{esc(og_alt)}">
 <meta property="og:locale" content="{og_locale}">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preload" href="/assets/fonts/bodoni-moda-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/josefin-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/figtree-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 {extra}<link rel="stylesheet" href="{assets['css']}">
 <script src="{assets['js']}" defer></script>
@@ -593,7 +593,6 @@ def home_page(lang, assets):
 <figure class="hero-photo" data-loupe>{photo(HERO, lang, assets, "hero", eager=True)}</figure>
 <div class="hero-text">
 <h1 id="h-hero">{esc(t["hero.h1"])}</h1>
-<span class="rule" aria-hidden="true"></span>
 <p class="lead">{esc(t["hero.lead"])}</p>
 <p class="proof"><span class="stars" aria-hidden="true">★★★★★</span><span>{esc(t["hero.proof"])}</span><a href="#resenas">{esc(t["hero.proofLink"])}</a></p>
 <a class="btn" id="hero-cta" href="#idea">{esc(t["hero.cta"])}</a>
@@ -699,7 +698,6 @@ def chooser_page(assets):
 <figure class="hero-photo" data-loupe>{photo(HERO, "en", assets, "hero", eager=True)}</figure>
 <div class="choose-head">
 <h1 id="h-choose">{BRAND}</h1>
-<span class="rule" aria-hidden="true"></span>
 <p class="sub">San Martín 569, Microcentro, Buenos Aires</p>
 <ul class="choose-list">
 {items}
