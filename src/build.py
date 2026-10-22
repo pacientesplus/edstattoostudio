@@ -506,6 +506,15 @@ def head(lang_attr, title, desc, path, alternates, assets, og_locale, og_alt, ex
 """
 
 
+# same hours as the Google Business Profile (oct 2026)
+OPENING_HOURS = [
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "10:00:00", "closes": "20:30:00"},
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday", "opens": "10:00:00", "closes": "21:00:00"},
+    {"@type": "OpeningHoursSpecification",
+     "dayOfWeek": ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "10:00:00", "closes": "20:00:00"},
+]
+
+
 def ld_json(path_url, lang=None):
     graph = [
         {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": BRAND,
@@ -514,7 +523,9 @@ def ld_json(path_url, lang=None):
          "image": SITE + "/og.jpg", "logo": SITE + "/logo-512.png", "telephone": PHONE_E164,
          "address": {"@type": "PostalAddress", "streetAddress": STREET, "postalCode": "C1004AAK",
                      "addressLocality": "Buenos Aires", "addressRegion": "Ciudad Autónoma de Buenos Aires",
-                     "addressCountry": "AR"}},
+                     "addressCountry": "AR"},
+         "openingHoursSpecification": OPENING_HOURS,
+         "sameAs": ["https://instagram.com/eduardoink", "https://www.youtube.com/@EduardoGomezR"]},
     ]
     if lang:
         graph.append({"@type": "WebPage", "@id": SITE + path_url + "#page", "url": SITE + path_url,
