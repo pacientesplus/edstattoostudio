@@ -8,10 +8,10 @@
     leadConversionLabel: "",     // FALTA: etiqueta de la conversión "Consulta por la web"
     leadEndpoint: "",            // FALTA: dirección que guarda cada consulta (código, clic de Google, WhatsApp)
     googleMapsKey: "",           // FALTA: clave de Google Maps Platform, restringida a edstattoostudio.com
-    placeId: "",                 // ID del estudio en Google Maps; sin él se busca una vez por nombre y dirección
+    placeId: "ChIJSbT071_LvJURa8aGV8tGUIY",                 // ID del estudio en Google Maps; sin él se busca una vez por nombre y dirección
     placeQuery: "EDS Tattoo, San Martín 569, Buenos Aires"
   };
-  const MAPS_FALLBACK = "https://www.google.com/maps/search/?api=1&query=EDS%20Tattoo%20San%20Mart%C3%ADn%20569%20Buenos%20Aires";
+  const MAPS_FALLBACK = "https://www.google.com/maps/search/?api=1&query=EDS%20Tattoo%20Studio&query_place_id=ChIJSbT071_LvJURa8aGV8tGUIY";
 
   const $ = (id) => document.getElementById(id);
   const el = (tag, cls) => { const n = document.createElement(tag); if (cls) n.className = cls; return n; };

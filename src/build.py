@@ -22,8 +22,9 @@ PHONE_E164 = "+5491122510832"
 PHONE_LABEL = "+54 9 11 2251-0832"
 WA_URL = "https://wa.me/5491122510832"
 STREET = "San Martín 569"
-MAPS_DIRECTIONS = "https://www.google.com/maps/dir/?api=1&destination=San%20Mart%C3%ADn%20569%2C%20Buenos%20Aires%2C%20Argentina"
-MAPS_REVIEWS = "https://www.google.com/maps/search/?api=1&query=EDS%20Tattoo%20San%20Mart%C3%ADn%20569%20Buenos%20Aires"
+PLACE_ID = "ChIJSbT071_LvJURa8aGV8tGUIY"  # ficha de EDS Tattoo Studio en Google Maps
+MAPS_DIRECTIONS = "https://www.google.com/maps/dir/?api=1&destination=EDS%20Tattoo%20Studio&destination_place_id=" + PLACE_ID
+MAPS_REVIEWS = "https://www.google.com/maps/search/?api=1&query=EDS%20Tattoo%20Studio&query_place_id=" + PLACE_ID
 TODAY = date.today().isoformat()
 
 LANGS = ["es", "pt", "en", "de"]
@@ -478,6 +479,7 @@ def head(lang_attr, title, desc, path, alternates, assets, og_locale, og_alt, ex
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="address=no">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{canonical}">
@@ -557,7 +559,7 @@ def foot(lang):
     others = "".join(f'<a href="/{l}/" hreflang="{l}" lang="{HTML_LANG[l]}">{LANG_NAME[l]}</a>' for l in LANGS)
     return f"""<footer class="foot">
 <span>{BRAND}</span>
-<span>{esc(t["place.addr"])}</span>
+<a href="{esc(MAPS_REVIEWS)}" target="_blank" rel="noopener">{esc(t["place.addr"])}</a>
 <a href="{WA_URL}" target="_blank" rel="noopener">WhatsApp {PHONE_LABEL}</a>
 <nav aria-label="{esc(t["nav.lang"])}"><a href="/{lang}/{PRIVACY_SLUG[lang]}/">{esc(t["foot.privacy"])}</a>{others}</nav>
 </footer>
@@ -673,7 +675,7 @@ def home_page(lang, assets):
 
 <section class="block" id="donde" aria-labelledby="h-place">
 <div class="block-head"><h2 id="h-place">{esc(t["place.h2"])}</h2></div>
-<p class="big">{esc(t["place.addr"])}</p>
+<p class="big"><a href="{esc(MAPS_REVIEWS)}" target="_blank" rel="noopener">{esc(t["place.addr"])}</a></p>
 <div class="links"><a href="{esc(MAPS_DIRECTIONS)}" target="_blank" rel="noopener">{esc(t["place.link"])}</a></div>
 </section>
 </main>
