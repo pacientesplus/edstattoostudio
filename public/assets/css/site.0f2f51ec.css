@@ -63,7 +63,8 @@ p{margin:0}
 /* top bar */
 .top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:14px}
 .mark{display:block;color:var(--ink);text-decoration:none;line-height:0}
-.mark .logo{display:block;height:30px;width:auto;max-width:58vw}
+.mark .logo{display:block;height:40px;width:auto;max-width:56vw}
+@media (min-width:900px){.mark .logo{height:46px}}
 .langs{display:flex;border:1px solid var(--hairline);border-radius:999px;padding:2px}
 .langs a{
   display:inline-flex;align-items:center;min-height:34px;padding:8px 11px;border-radius:999px;
