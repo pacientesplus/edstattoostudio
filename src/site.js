@@ -5,7 +5,11 @@
   const CONFIG = {
     whatsapp: "5491122510832",   // +54 9 11 2251-0832 (el 9 es como WhatsApp arma los números de Argentina)
     googleAdsId: "",             // FALTA: ID de Google Ads, formato AW-XXXXXXXXX
-    leadConversionLabel: "",     // FALTA: etiqueta de la conversión "Consulta por la web"
+    visitorConversionLabel: "",  // FALTA: etiqueta de la conversión "Consulta visitante"
+    localConversionLabel: "",    // FALTA: etiqueta de la conversión "Consulta local"
+    visitorValue: 3,             // valor de una consulta de visitante (vale más: es el cliente que más interesa)
+    localValue: 1,               // valor de una consulta local
+    conversionCurrency: "USD",   // moneda de esos valores (son pesos relativos, no plata real)
     leadEndpoint: "",            // FALTA: dirección que guarda cada consulta (código, clic de Google, WhatsApp)
     googleMapsKey: "",           // FALTA: clave de Google Maps Platform, restringida a edstattoostudio.com
     placeId: "ChIJSbT071_LvJURa8aGV8tGUIY",                 // ID del estudio en Google Maps; sin él se busca una vez por nombre y dirección
@@ -172,10 +176,21 @@
     const text = lines.join("\n");
     const waUrl = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(text);
 
-    /* Google Ads: el WhatsApp viaja cifrado por la etiqueta (conversiones avanzadas para clientes potenciales) */
-    if (typeof window.gtag === "function" && CONFIG.googleAdsId && CONFIG.leadConversionLabel) {
+    /* Visitante: lo que marcó en el formulario o, como segunda prueba, un número que no es de Argentina */
+    const foreignPhone = !phone.startsWith("+54");
+    const visitor = stayI === 1 || foreignPhone;
+
+    /* Google Ads: una conversión distinta para visitante y para local, con su valor.
+       El WhatsApp viaja cifrado por la etiqueta (conversiones avanzadas para clientes potenciales). */
+    const label = visitor ? CONFIG.visitorConversionLabel : CONFIG.localConversionLabel;
+    if (typeof window.gtag === "function" && CONFIG.googleAdsId && label) {
       window.gtag("set", "user_data", { phone_number: phone });
-      window.gtag("event", "conversion", { send_to: CONFIG.googleAdsId + "/" + CONFIG.leadConversionLabel, transaction_id: ref });
+      window.gtag("event", "conversion", {
+        send_to: CONFIG.googleAdsId + "/" + label,
+        value: visitor ? CONFIG.visitorValue : CONFIG.localValue,
+        currency: CONFIG.conversionCurrency,
+        transaction_id: ref
+      });
     }
 
     /* Registro de la consulta: con esto después se sube a Google quién se tatuó y cuánto pagó */
@@ -188,6 +203,8 @@
       idea,
       size: P.sizesEs[sizeI],
       stay: stayI === 1 ? "de visita" : stayI === 0 ? "vive en Buenos Aires" : "",
+      foreign_phone: foreignPhone,
+      visitor,
       click_type: click ? click.type : "",
       click_id: click ? click.id : "",
       click_at: click ? new Date(click.ts).toISOString() : "",

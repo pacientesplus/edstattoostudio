@@ -20,7 +20,7 @@ Página de EDS Tattoo Studio (San Martín 569, Microcentro, Buenos Aires) en cas
 
 ## Lo que falta prender (en `src/site.js`, objeto `CONFIG`)
 
-- `googleAdsId` y `leadConversionLabel`: etiqueta y conversión de Google Ads.
+- `googleAdsId`, `visitorConversionLabel` y `localConversionLabel`: etiqueta de Google Ads y las dos conversiones ("Consulta visitante" y "Consulta local"). Es visitante si marcó "Estoy de visita" o si su WhatsApp no es +54. Cada una lleva su valor (`visitorValue`, `localValue`) para que Google priorice al visitante.
 - `leadEndpoint`: dónde se guarda cada consulta (código, clic de Google, WhatsApp) para después subir a Google quién se tatuó y cuánto pagó.
 - `googleMapsKey` y `placeId`: reseñas reales de Google en vivo.
 
