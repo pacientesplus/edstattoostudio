@@ -1,0 +1,31 @@
+EDS Tattoo Studio - logo y formatos
+
+QUÉ USAR DÓNDE
+- Página web: carpeta web/ (es lo que usa edstattoostudio.com).
+  favicon.ico, favicon.svg y favicon-96.png: el ícono de la pestaña y de los resultados de Google (múltiplos de 48 px).
+  apple-touch-icon.png (180), icon-192.png, icon-512.png: ícono al guardar la página en el celular.
+  logo-512.png: el logo que se declara a Google en los datos del negocio.
+  og-1200x630.jpg: la imagen que aparece al compartir el link por WhatsApp, Facebook, etc.
+- Ficha de Google (Business Profile): redes/google-perfil-logo-720.png como logo (Google recomienda 720 x 720)
+  y redes/google-portada-1920x1080.jpg como portada.
+- Instagram y Facebook (foto de perfil): redes/instagram-facebook-perfil-1080.png.
+- WhatsApp Business (foto de perfil): redes/whatsapp-perfil-640.png.
+  Las fotos de perfil están pensadas para el recorte en círculo: el logo queda adentro.
+- Imprenta (cartel, tarjetas, stickers): imprenta/*.pdf o vector/*.svg. Son vectores: se agrandan sin perder calidad.
+- Cualquier otro uso: png/ (fondo transparente, 1024 y 2048 px de ancho).
+
+VERSIONES
+- color: letras negras y línea violeta, para fondos claros.
+- color-fondo-oscuro: letras blancas y línea violeta clara, para fondos oscuros.
+- negro / blanco: una sola tinta (sellos, grabados, vinilo de un color).
+- apilado: "eds" arriba y "tattoo studio" abajo. horizontal: todo en una línea.
+- isotipo-e: la "e" sola en círculo, para tamaños muy chicos.
+
+COLORES
+- Tinta: #000000
+- Violeta esténcil: #5B3FB3 (sobre oscuro: #A897F2)
+- Papel: #FCFCFE
+
+LETRA
+- "tattoo studio": Josefin Sans Light (licencia libre SIL OFL), ya convertida a trazos en los archivos.
+- Textos de la página: Figtree.

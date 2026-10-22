@@ -43,6 +43,15 @@ ALT_PREFIX = {"es": "Tatuaje: ", "pt": "Tatuagem: ", "en": "Tattoo: ", "de": "Ta
 HERO_SIZES = "(min-width: 900px) 540px, 100vw"
 
 
+def header_logo():
+    with open(os.path.join(SRC, "logo-horizontal.svg"), encoding="utf-8") as f:
+        svg = f.read().strip()
+    svg = (svg.replace('stroke="#000000"', 'stroke="currentColor"')
+              .replace('fill="#000000"', 'fill="currentColor"')
+              .replace('stroke="#5B3FB3"', 'style="stroke:var(--stencil)"'))
+    return svg.replace("<svg ", '<svg class="logo" focusable="false" ', 1)
+
+
 def hero_preload(assets):
     im = assets["img"][HERO["file"]]
     return (f'<link rel="preload" as="image" href="{im["url"]}" imagesrcset="{im["srcset"]}" '
@@ -500,7 +509,7 @@ def ld_json(path_url, lang=None):
         {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": BRAND,
          "inLanguage": ["es", "pt", "en", "de"]},
         {"@type": "TattooParlor", "@id": SITE + "/#studio", "name": BRAND, "url": SITE + "/",
-         "image": SITE + "/og.jpg", "telephone": PHONE_E164,
+         "image": SITE + "/og.jpg", "logo": SITE + "/logo-512.png", "telephone": PHONE_E164,
          "address": {"@type": "PostalAddress", "streetAddress": STREET,
                      "addressLocality": "Buenos Aires", "addressRegion": "Ciudad Autónoma de Buenos Aires",
                      "addressCountry": "AR"}},
@@ -524,7 +533,7 @@ def langs_nav(lang, paths):
 
 def top(lang, paths, home):
     return f"""<header class="top">
-<a class="mark" href="{home}">{BRAND}</a>
+<a class="mark" href="{home}">{header_logo()}</a>
 {langs_nav(lang, paths)}
 </header>
 """
@@ -682,7 +691,7 @@ def chooser_page(assets):
     desc = "Fine line tattoos in downtown Buenos Aires. Tatuajes fine line en Microcentro. Tatuagens fine line em Buenos Aires. Fine-Line-Tattoos in Buenos Aires."
     body = f"""<body>
 <div class="wrap">
-<header class="top"><a class="mark" href="/">{BRAND}</a></header>
+<header class="top"><a class="mark" href="/">{header_logo()}</a></header>
 <main>
 <section class="choose" aria-labelledby="h-choose">
 <figure class="hero-photo" data-loupe>{photo(HERO, "en", assets, "hero", eager=True)}</figure>
@@ -744,7 +753,7 @@ def not_found_page(assets):
                 '<meta name="robots" content="noindex">\n')
     return page + f"""<body>
 <div class="wrap">
-<header class="top"><a class="mark" href="/">{BRAND}</a></header>
+<header class="top"><a class="mark" href="/">{header_logo()}</a></header>
 <main class="prose">
 <h1>404</h1>
 {lines}
