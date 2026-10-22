@@ -347,13 +347,13 @@ PRIVACY = {
             ("Qué datos se piden y para qué", ["Cuando usás el formulario se piden una corta descripción de lo que te querés hacer, el tamaño aproximado, si vivís en Buenos Aires o estás de visita, y tu número de WhatsApp. Se usan para responderte y coordinar el tatuaje. Darlos es voluntario; sin el número de WhatsApp no te podemos responder."]),
             ("Medición de anuncios", ["Si llegaste por un anuncio de Google, la página guarda en tu navegador el identificador de ese clic durante 90 días. Cuando la medición de Google Ads está activa, al mandar el formulario tu número de WhatsApp se envía a Google cifrado, en un formato que no permite leerlo, para medir qué anuncios traen consultas. Si después te tatuás, podemos informarle a Google ese resultado y su monto, asociado al mismo número cifrado."]),
             ("Con quién se comparten", [
-                ["Google, para medir los anuncios y para mostrar en esta página las reseñas públicas de Google Maps. Para mostrarlas, tu navegador se conecta con Google.",
+                ["Google, para medir las visitas (Google Analytics), medir los anuncios (Google Ads) y mostrar en esta página las reseñas públicas de Google Maps. Para mostrarlas, tu navegador se conecta con Google.",
                  "WhatsApp (Meta), cuando mandás el mensaje desde tu teléfono.",
                  "Cloudflare, que aloja esta página."],
                 "Estos proveedores pueden tratar datos fuera de Argentina."]),
             ("Cuánto tiempo se guardan", ["Mientras sean necesarios para responderte, coordinar el tatuaje y medir los anuncios. Podés pedir que los borremos cuando quieras."]),
             ("Tus derechos", ["Podés pedir acceso, corrección, actualización o eliminación de tus datos escribiendo al WhatsApp de arriba. Tenés derecho a acceder a ellos en forma gratuita cada seis meses, salvo que acredites un interés legítimo para hacerlo antes (artículo 14, inciso 3, de la Ley 25.326). La Agencia de Acceso a la Información Pública, como órgano de control de la Ley 25.326, atiende las denuncias y reclamos de quienes vean afectados sus derechos por incumplimiento de las normas de protección de datos personales."]),
-            ("Cookies", ["La página no usa cookies propias. Guarda en tu navegador el identificador del clic de Google y, cuando la medición de Google Ads está activa, Google puede usar sus cookies para medir los anuncios."]),
+            ("Cookies", ["La página usa Google Analytics, para saber cuántas personas la visitan, y Google Ads, para saber qué anuncios traen consultas. Las dos herramientas usan cookies de Google. Si estás en Europa, el Reino Unido o Suiza, no se activan hasta que las aceptes en el aviso. Estés donde estés, podés aceptarlas o rechazarlas y cambiar tu elección cuando quieras desde el enlace «Cookies» al pie de cada página. La página guarda en tu navegador tu elección y el identificador del clic de Google.", "Cómo usa Google la información de los sitios que usan sus servicios: https://policies.google.com/technologies/partner-sites"]),
         ],
     },
     "pt": {
@@ -364,13 +364,13 @@ PRIVACY = {
             ("Quais dados pedimos e para quê", ["Quando você usa o formulário, pedimos uma breve descrição do que você quer fazer, o tamanho aproximado, se mora em Buenos Aires ou está de visita, e seu número de WhatsApp. Usamos esses dados para te responder e combinar a tatuagem. Informá-los é voluntário; sem o número de WhatsApp não conseguimos te responder."]),
             ("Medição de anúncios", ["Se você chegou por um anúncio do Google, a página guarda no seu navegador o identificador desse clique por 90 dias. Quando a medição do Google Ads está ativa, ao enviar o formulário seu número de WhatsApp é enviado ao Google criptografado, num formato que não permite lê-lo, para medir quais anúncios trazem contatos. Se depois você fizer a tatuagem, podemos informar ao Google esse resultado e o valor, associados ao mesmo número criptografado."]),
             ("Com quem compartilhamos", [
-                ["Google, para medir os anúncios e para mostrar nesta página as avaliações públicas do Google Maps. Para mostrá-las, seu navegador se conecta ao Google.",
+                ["Google, para medir as visitas (Google Analytics), medir os anúncios (Google Ads) e mostrar nesta página as avaliações públicas do Google Maps. Para mostrá-las, seu navegador se conecta ao Google.",
                  "WhatsApp (Meta), quando você envia a mensagem pelo seu celular.",
                  "Cloudflare, que hospeda esta página."],
                 "Esses fornecedores podem tratar dados fora da Argentina."]),
             ("Por quanto tempo guardamos", ["Enquanto forem necessários para te responder, combinar a tatuagem e medir os anúncios. Você pode pedir que os apaguemos quando quiser."]),
             ("Seus direitos", ["Você pode pedir acesso, correção, atualização ou exclusão dos seus dados pelo WhatsApp acima. Você tem direito de acessá-los gratuitamente a cada seis meses, salvo se comprovar um interesse legítimo para fazê-lo antes (artigo 14, inciso 3, da Lei 25.326 da Argentina). A Agencia de Acceso a la Información Pública, como órgão de controle da Lei 25.326, recebe denúncias e reclamações de quem tiver seus direitos afetados pelo descumprimento das normas de proteção de dados pessoais."]),
-            ("Cookies", ["A página não usa cookies próprios. Ela guarda no seu navegador o identificador do clique do Google e, quando a medição do Google Ads está ativa, o Google pode usar seus cookies para medir os anúncios."]),
+            ("Cookies", ["A página usa o Google Analytics, para saber quantas pessoas a visitam, e o Google Ads, para saber quais anúncios trazem contatos. As duas ferramentas usam cookies do Google. Se você está na Europa, no Reino Unido ou na Suíça, elas só são ativadas depois que você as aceitar no aviso. Esteja onde estiver, você pode aceitá-las ou recusá-las e mudar sua escolha quando quiser pelo link «Cookies» no rodapé de cada página. A página guarda no seu navegador a sua escolha e o identificador do clique do Google.", "Como o Google usa as informações de sites que usam seus serviços: https://policies.google.com/technologies/partner-sites"]),
         ],
     },
     "en": {
@@ -381,13 +381,13 @@ PRIVACY = {
             ("What we ask for and why", ["When you use the form we ask for a short description of what you want, the approximate size, whether you live in Buenos Aires or are visiting, and your WhatsApp number. We use them to reply to you and arrange your tattoo. Giving them is voluntary; without your WhatsApp number we can't reply."]),
             ("Ad measurement", ["If you arrived through a Google ad, the page stores that click's identifier in your browser for 90 days. When Google Ads measurement is on, sending the form passes your WhatsApp number to Google in encrypted form, which can't be read, to measure which ads bring inquiries. If you later get tattooed, we may report that result and its amount to Google, linked to the same encrypted number."]),
             ("Who we share it with", [
-                ["Google, to measure ads and to show public Google Maps reviews on this page. To show them, your browser connects to Google.",
+                ["Google, to measure visits (Google Analytics), measure ads (Google Ads) and show public Google Maps reviews on this page. To show them, your browser connects to Google.",
                  "WhatsApp (Meta), when you send the message from your phone.",
                  "Cloudflare, which hosts this page."],
                 "These providers may process data outside Argentina."]),
             ("How long we keep it", ["As long as it's needed to reply to you, arrange your tattoo and measure the ads. You can ask us to delete it at any time."]),
             ("Your rights", ["You can ask to access, correct, update or delete your data by writing to the WhatsApp above. You have the right to access it free of charge every six months, unless you show a legitimate interest in doing so sooner (Article 14, section 3, of Argentina's Law 25,326). The Agencia de Acceso a la Información Pública, as the authority in charge of Law 25,326, handles complaints from anyone whose rights are affected by a breach of the personal data protection rules."]),
-            ("Cookies", ["The page sets no cookies of its own. It stores the Google click identifier in your browser and, when Google Ads measurement is on, Google may use its cookies to measure the ads."]),
+            ("Cookies", ["The page uses Google Analytics, to know how many people visit it, and Google Ads, to know which ads bring inquiries. Both use Google cookies. If you are in Europe, the United Kingdom or Switzerland, they stay off until you accept them in the notice. Wherever you are, you can accept or reject them and change your choice at any time with the “Cookies” link at the bottom of every page. The page stores your choice and the Google click identifier in your browser.", "How Google uses information from sites that use its services: https://policies.google.com/technologies/partner-sites"]),
         ],
     },
     "de": {
@@ -398,13 +398,13 @@ PRIVACY = {
             ("Welche Daten wir abfragen und wofür", ["Wenn du das Formular nutzt, fragen wir nach einer kurzen Beschreibung deines Wunschtattoos, der ungefähren Größe, ob du in Buenos Aires wohnst oder zu Besuch bist, und deiner WhatsApp-Nummer. Wir nutzen diese Daten, um dir zu antworten und dein Tattoo zu planen. Die Angaben sind freiwillig; ohne WhatsApp-Nummer können wir dir nicht antworten."]),
             ("Messung von Anzeigen", ["Wenn du über eine Google-Anzeige gekommen bist, speichert die Seite die Kennung dieses Klicks 90 Tage lang in deinem Browser. Wenn die Google-Ads-Messung aktiv ist, wird deine WhatsApp-Nummer beim Absenden des Formulars verschlüsselt an Google übermittelt, in einer Form, die sich nicht lesen lässt, um zu messen, welche Anzeigen Anfragen bringen. Wenn du dich danach tätowieren lässt, können wir Google dieses Ergebnis und den Betrag melden, verknüpft mit derselben verschlüsselten Nummer."]),
             ("Mit wem wir Daten teilen", [
-                ["Google, um Anzeigen zu messen und auf dieser Seite öffentliche Google-Maps-Bewertungen anzuzeigen. Dafür verbindet sich dein Browser mit Google.",
+                ["Google, um Besuche (Google Analytics) und Anzeigen (Google Ads) zu messen und auf dieser Seite öffentliche Google-Maps-Bewertungen anzuzeigen. Dafür verbindet sich dein Browser mit Google.",
                  "WhatsApp (Meta), wenn du die Nachricht von deinem Handy sendest.",
                  "Cloudflare, das diese Seite hostet."],
                 "Diese Anbieter können Daten außerhalb Argentiniens verarbeiten."]),
             ("Wie lange wir Daten speichern", ["So lange, wie es nötig ist, um dir zu antworten, dein Tattoo zu planen und die Anzeigen zu messen. Du kannst jederzeit verlangen, dass wir sie löschen."]),
             ("Deine Rechte", ["Du kannst über das WhatsApp oben Auskunft, Berichtigung, Aktualisierung oder Löschung deiner Daten verlangen. Du hast das Recht, alle sechs Monate kostenlos Auskunft zu erhalten, sofern du kein berechtigtes Interesse an einer früheren Auskunft nachweist (Artikel 14, Absatz 3 des argentinischen Gesetzes 25.326). Die Agencia de Acceso a la Información Pública ist als Aufsichtsbehörde für das Gesetz 25.326 für Beschwerden zuständig, wenn Rechte durch Verstöße gegen den Datenschutz verletzt werden."]),
-            ("Cookies", ["Die Seite setzt keine eigenen Cookies. Sie speichert die Google-Klickkennung in deinem Browser, und wenn die Google-Ads-Messung aktiv ist, kann Google seine Cookies zur Messung der Anzeigen verwenden."]),
+            ("Cookies", ["Die Seite nutzt Google Analytics, um zu wissen, wie viele Menschen sie besuchen, und Google Ads, um zu wissen, welche Anzeigen Anfragen bringen. Beide verwenden Cookies von Google. Wenn du in Europa, im Vereinigten Königreich oder in der Schweiz bist, bleiben sie aus, bis du sie im Hinweis akzeptierst. Egal wo du bist, kannst du sie annehmen oder ablehnen und deine Wahl jederzeit über den Link „Cookies“ unten auf jeder Seite ändern. Die Seite speichert deine Wahl und die Google-Klickkennung in deinem Browser.", "Wie Google Informationen von Websites nutzt, die seine Dienste verwenden: https://policies.google.com/technologies/partner-sites"]),
         ],
     },
 }
@@ -561,7 +561,7 @@ def foot(lang):
 <span>{BRAND}</span>
 <a href="{esc(MAPS_REVIEWS)}" target="_blank" rel="noopener">{esc(t["place.addr"])}</a>
 <a href="{WA_URL}" target="_blank" rel="noopener">WhatsApp {PHONE_LABEL}</a>
-<nav aria-label="{esc(t["nav.lang"])}"><a href="/{lang}/{PRIVACY_SLUG[lang]}/">{esc(t["foot.privacy"])}</a>{others}</nav>
+<nav aria-label="{esc(t["nav.lang"])}"><a href="/{lang}/{PRIVACY_SLUG[lang]}/">{esc(t["foot.privacy"])}</a><button type="button" class="linkish" data-cookie-settings>Cookies</button>{others}</nav>
 </footer>
 """
 
@@ -714,6 +714,7 @@ def chooser_page(assets):
 <footer class="foot">
 <span>{BRAND}</span>
 <a href="{WA_URL}" target="_blank" rel="noopener">WhatsApp {PHONE_LABEL}</a>
+<nav aria-label="Privacy"><a href="/en/privacy/">Privacy</a><button type="button" class="linkish" data-cookie-settings>Cookies</button></nav>
 </footer>
 </div></div>
 </body>

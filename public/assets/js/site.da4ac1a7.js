@@ -4,6 +4,7 @@
   /* Datos del estudio. Lo que dice FALTA se completa cuando se prenda esa parte. */
   const CONFIG = {
     whatsapp: "5491122510832",   // +54 9 11 2251-0832 (el 9 es como WhatsApp arma los números de Argentina)
+    analyticsId: "G-VS2YKG1P8B", // Google Analytics 4 (propiedad EDS Tattoo Studio)
     googleAdsId: "",             // FALTA: ID de Google Ads, formato AW-XXXXXXXXX
     visitorConversionLabel: "",  // FALTA: etiqueta de la conversión "Consulta visitante"
     localConversionLabel: "",    // FALTA: etiqueta de la conversión "Consulta local"
@@ -52,35 +53,116 @@
   }
 
   /* Guardar el clic del anuncio de Google (gclid, gbraid o wbraid) por 90 días, en cualquier página */
+  /* Consentimiento (modo de consentimiento v2 de Google).
+     En el Espacio Económico Europeo, el Reino Unido y Suiza todo arranca denegado hasta que la persona acepta
+     (Google aplica esa región por su cuenta según la ubicación). El aviso se muestra a quien tiene el teléfono
+     en hora de Europa; cualquiera puede cambiar su elección desde "Cookies" al pie. */
+  const CONSENT_REGIONS = ["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT",
+    "LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"];
+  const inEuropeTime = (() => {
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+      return /^Europe\//.test(tz) || /^Atlantic\/(Canary|Madeira|Azores|Reykjavik|Faroe)$/.test(tz);
+    } catch (e) { return false; }
+  })();
+  const consentChoice = () => { const v = store.get("eds_consent"); return v === "granted" || v === "denied" ? v : null; };
+  const consentOk = () => { const c = consentChoice(); return c ? c === "granted" : !inEuropeTime; };
+
+  /* Clic del anuncio de Google (gclid, gbraid o wbraid): se guarda 90 días solo si hay consentimiento */
+  let pendingClick = null;
   (function captureClick() {
     let params;
     try { params = new URLSearchParams(location.search); } catch (e) { return; }
     for (const key of ["gclid", "gbraid", "wbraid"]) {
       const id = params.get(key);
-      if (id) { store.set("eds_click", JSON.stringify({ type: key, id, ts: Date.now() })); return; }
+      if (id) {
+        pendingClick = { type: key, id, ts: Date.now() };
+        if (consentOk()) store.set("eds_click", JSON.stringify(pendingClick));
+        return;
+      }
     }
   })();
   function readClick() {
     const raw = store.get("eds_click");
-    if (!raw) return null;
+    if (!raw) return pendingClick;
     try {
       const c = JSON.parse(raw);
       return Date.now() - c.ts > 90 * 864e5 ? null : c;
-    } catch (e) { return null; }
+    } catch (e) { return pendingClick; }
   }
 
-  /* Etiqueta de Google Ads: solo se carga cuando está el ID de la cuenta */
+  /* Etiqueta de Google (Analytics + Ads), sin Tag Manager */
+  const tagIds = [CONFIG.analyticsId, CONFIG.googleAdsId].filter(Boolean);
+  const consentState = (on) => {
+    const v = on ? "granted" : "denied";
+    return { ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v };
+  };
   (function loadGtag() {
-    if (!CONFIG.googleAdsId) return;
+    if (!tagIds.length) return;
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () { window.dataLayer.push(arguments); };
-    window.gtag("js", new Date());
-    window.gtag("config", CONFIG.googleAdsId);
+    const g = window.gtag;
+    g("consent", "default", Object.assign(consentState(false), { region: CONSENT_REGIONS, wait_for_update: 500 }));
+    g("consent", "default", consentState(true));
+    const c = consentChoice();
+    if (c) g("consent", "update", consentState(c === "granted"));
+    g("set", "url_passthrough", true);
+    g("set", "ads_data_redaction", true);
+    g("js", new Date());
+    tagIds.forEach((id) => g("config", id));
     const s = document.createElement("script");
     s.async = true;
-    s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(CONFIG.googleAdsId);
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(tagIds[0]);
     document.head.appendChild(s);
   })();
+
+  /* Aviso de cookies */
+  const CONSENT_TEXT = {
+    es: { msg: "Uso cookies de Google Analytics y Google Ads para saber cuánta gente visita la página y qué anuncios traen consultas.", more: "Más información", yes: "Aceptar", no: "Rechazar", label: "Cookies", path: "/es/privacidad/" },
+    pt: { msg: "Uso cookies do Google Analytics e do Google Ads para saber quantas pessoas visitam a página e quais anúncios trazem contatos.", more: "Saiba mais", yes: "Aceitar", no: "Recusar", label: "Cookies", path: "/pt/privacidade/" },
+    en: { msg: "I use Google Analytics and Google Ads cookies to know how many people visit this page and which ads bring inquiries.", more: "Learn more", yes: "Accept", no: "Reject", label: "Cookies", path: "/en/privacy/" },
+    de: { msg: "Ich nutze Cookies von Google Analytics und Google Ads, um zu wissen, wie viele Menschen die Seite besuchen und welche Anzeigen Anfragen bringen.", more: "Mehr erfahren", yes: "Akzeptieren", no: "Ablehnen", label: "Cookies", path: "/de/datenschutz/" }
+  };
+  function setConsent(on) {
+    store.set("eds_consent", on ? "granted" : "denied");
+    if (typeof window.gtag === "function") window.gtag("consent", "update", consentState(on));
+    if (on && pendingClick) store.set("eds_click", JSON.stringify(pendingClick));
+    if (!on) { try { localStorage.removeItem("eds_click"); } catch (e) { /* sin almacenamiento */ } }
+  }
+  function showConsent() {
+    if (!tagIds.length) return;
+    const old = document.querySelector(".consent");
+    if (old) { old.querySelector("button").focus(); return; }
+    const lang = (document.documentElement.lang || "en").slice(0, 2).toLowerCase();
+    const L = CONSENT_TEXT[lang] || CONSENT_TEXT.en;
+    const box = el("div", "consent");
+    box.setAttribute("role", "region");
+    box.setAttribute("aria-label", L.label);
+    const p = el("p");
+    p.textContent = L.msg + " ";
+    const a = el("a");
+    a.href = L.path;
+    a.textContent = L.more;
+    p.appendChild(a);
+    const row = el("div", "consent-actions");
+    const no = el("button", "btn btn-line");
+    no.type = "button";
+    no.textContent = L.no;
+    const yes = el("button", "btn");
+    yes.type = "button";
+    yes.textContent = L.yes;
+    const close = (on) => { setConsent(on); box.remove(); };
+    no.addEventListener("click", () => close(false));
+    yes.addEventListener("click", () => close(true));
+    row.append(no, yes);
+    box.append(p, row);
+    document.body.appendChild(box);
+  }
+  if (tagIds.length && inEuropeTime && !consentChoice()) showConsent();
+  document.querySelectorAll("[data-cookie-settings]").forEach((b) => {
+    if (!tagIds.length) { b.hidden = true; return; }
+    b.addEventListener("click", showConsent);
+  });
 
   /* Lo que sigue es solo para las páginas de cada idioma */
   const cfgEl = $("eds-page");
