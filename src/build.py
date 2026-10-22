@@ -525,7 +525,7 @@ def ld_json(path_url, lang=None):
                      "addressLocality": "Buenos Aires", "addressRegion": "Ciudad Autónoma de Buenos Aires",
                      "addressCountry": "AR"},
          "openingHoursSpecification": OPENING_HOURS,
-         "sameAs": ["https://instagram.com/eduardoink", "https://www.youtube.com/@EduardoGomezR"]},
+         "sameAs": ["https://www.instagram.com/edstattoostudio1/", "https://www.youtube.com/@EduardoGomezR"]},
     ]
     if lang:
         graph.append({"@type": "WebPage", "@id": SITE + path_url + "#page", "url": SITE + path_url,
