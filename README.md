@@ -29,3 +29,10 @@ Página de EDS Tattoo Studio (San Martín 569, Microcentro, Buenos Aires) en cas
 1. Poner la foto en `src/img/` (WebP, sin datos de ubicación) y sumarla a `WORKS` en `src/build.py`.
 2. `python3 src/build.py`
 3. Subir el cambio al repositorio; Cloudflare publica solo.
+
+## Acceso privado a Meta (`functions/api/meta/`)
+
+- `/api/meta/vXX.X/<ruta de Graph>` con `Authorization: Bearer <EDS_KEY>`. Usa por adentro el token del usuario del sistema `edstattoo` (portfolio eduardoink, app "eds tattoo studio"). Solo del estudio: nada de odontología.
+- Secretos en Cloudflare Pages → Settings → Variables and secrets: `META_TOKEN` y `EDS_KEY`. Para cortar el acceso, cambiar `EDS_KEY`.
+- Freno en el código: bloquea `DELETE` y cambiar el estado a pausado, archivado o borrado. Eso lo hace Eduardo o se hace con su OK.
+- El token nunca vuelve en las respuestas (se borra de los enlaces de paginación).
