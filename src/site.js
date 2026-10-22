@@ -5,9 +5,9 @@
   const CONFIG = {
     whatsapp: "5491122510832",   // +54 9 11 2251-0832 (el 9 es como WhatsApp arma los números de Argentina)
     analyticsId: "G-VS2YKG1P8B", // Google Analytics 4 (propiedad EDS Tattoo Studio)
-    googleAdsId: "",             // FALTA: ID de Google Ads, formato AW-XXXXXXXXX
-    visitorConversionLabel: "",  // FALTA: etiqueta de la conversión "Consulta visitante"
-    localConversionLabel: "",    // FALTA: etiqueta de la conversión "Consulta local"
+    googleAdsId: "AW-11475190614",  // cuenta de Google Ads eduardo INK (147-493-6431)
+    visitorConversionLabel: "K9xpCL3Xp6UdENaG5t8q",  // "Consulta visitante"
+    localConversionLabel: "yAlwCMDXp6UdENaG5t8q",    // "Consulta local"
     visitorValue: 3,             // valor de una consulta de visitante (vale más: es el cliente que más interesa)
     localValue: 1,               // valor de una consulta local
     conversionCurrency: "USD",   // moneda de esos valores (son pesos relativos, no plata real)
@@ -272,6 +272,13 @@
         value: visitor ? CONFIG.visitorValue : CONFIG.localValue,
         currency: CONFIG.conversionCurrency,
         transaction_id: ref
+      });
+      /* Analytics: la misma consulta como evento clave */
+      if (CONFIG.analyticsId) window.gtag("event", "generate_lead", {
+        send_to: CONFIG.analyticsId,
+        value: visitor ? CONFIG.visitorValue : CONFIG.localValue,
+        currency: CONFIG.conversionCurrency,
+        lead_source: visitor ? "visitante" : "local"
       });
     }
 
