@@ -510,10 +510,8 @@ def head(lang_attr, title, desc, path, alternates, assets, og_locale, og_alt, ex
 
 # same hours as the Google Business Profile (oct 2026)
 OPENING_HOURS = [
-    {"@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "10:00:00", "closes": "20:30:00"},
-    {"@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday", "opens": "10:00:00", "closes": "21:00:00"},
     {"@type": "OpeningHoursSpecification",
-     "dayOfWeek": ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "10:00:00", "closes": "20:00:00"},
+     "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "10:00:00", "closes": "20:30:00"},
 ]
 
 
