@@ -13,7 +13,8 @@
 
   Freno (regla de Eduardo): nada que borre o pause sin su OK.
     - Bloqueado: método DELETE.
-    - Bloqueado: cambiar status / effective_status a PAUSED, ARCHIVED o DELETED.
+    - Bloqueado: cambiar el status de algo que ya existe (POST a /vXX/<id>) a PAUSED, ARCHIVED o DELETED.
+      Crear cosas nuevas en pausa (POST a /act_.../campaigns, /adsets, /ads) sí se puede.
   Todo lo demás pasa (leer, crear, editar, subir, publicar, responder).
 */
 
@@ -56,32 +57,34 @@ export async function onRequest({ request, env, params }) {
   if (method === "DELETE") return json(403, { error: "Freno: borrar necesita el OK de Eduardo" });
   if (!["GET", "POST"].includes(method)) return json(405, { error: "Solo GET y POST" });
 
+  // Solo frena cambios sobre algo existente; crear en pausa es lo seguro y se permite.
+  const isUpdate = /^v\d+\.\d+\/\d+\/?$/.test(path);
   const inUrl = new URL(request.url);
   const host = HOSTS[(request.headers.get("x-graph-host") || "graph").toLowerCase()] || HOSTS.graph;
   const target = new URL(host + "/" + path);
   inUrl.searchParams.forEach((v, k) => { if (k !== "access_token") target.searchParams.append(k, v); });
-  if (blockedStatus((k) => target.searchParams.get(k))) return json(403, { error: "Freno: pausar, archivar o borrar necesita el OK de Eduardo" });
+  if (isUpdate && blockedStatus((k) => target.searchParams.get(k))) return json(403, { error: "Freno: pausar, archivar o borrar necesita el OK de Eduardo" });
 
   const init = { method, headers: {} };
   if (method === "POST") {
     const ct = request.headers.get("content-type") || "";
     if (ct.includes("multipart/form-data")) {
       const fd = await request.formData();
-      if (blockedStatus((k) => fd.get(k))) return json(403, { error: "Freno: pausar, archivar o borrar necesita el OK de Eduardo" });
+      if (isUpdate && blockedStatus((k) => fd.get(k))) return json(403, { error: "Freno: pausar, archivar o borrar necesita el OK de Eduardo" });
       fd.delete("access_token");
       fd.append("access_token", env.META_TOKEN);
       init.body = fd;
     } else if (ct.includes("application/json")) {
       const body = await request.json().catch(() => null);
       if (!body || typeof body !== "object") return json(400, { error: "JSON inválido" });
-      if (blockedStatus((k) => body[k])) return json(403, { error: "Freno: pausar, archivar o borrar necesita el OK de Eduardo" });
+      if (isUpdate && blockedStatus((k) => body[k])) return json(403, { error: "Freno: pausar, archivar o borrar necesita el OK de Eduardo" });
       delete body.access_token;
       body.access_token = env.META_TOKEN;
       init.headers["content-type"] = "application/json";
       init.body = JSON.stringify(body);
     } else {
       const form = new URLSearchParams(await request.text());
-      if (blockedStatus((k) => form.get(k))) return json(403, { error: "Freno: pausar, archivar o borrar necesita el OK de Eduardo" });
+      if (isUpdate && blockedStatus((k) => form.get(k))) return json(403, { error: "Freno: pausar, archivar o borrar necesita el OK de Eduardo" });
       form.delete("access_token");
       form.append("access_token", env.META_TOKEN);
       init.headers["content-type"] = "application/x-www-form-urlencoded";
