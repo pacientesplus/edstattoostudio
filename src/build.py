@@ -37,7 +37,7 @@ PRIVACY_SLUG = {"es": "privacidad", "pt": "privacidade", "en": "privacy", "de": 
 LANG_NAME = {"es": "Español", "pt": "Português", "en": "English", "de": "Deutsch"}
 NAV_ORDER = ["es", "en", "pt", "de"]  # orden de la barra de idiomas
 ALT_PREFIX = {"es": "Tatuaje: ", "pt": "Tatuagem: ", "en": "Tattoo: ", "de": "Tattoo: "}
-HERO_SIZES = "(min-width: 900px) 540px, 100vw"
+HERO_SIZES = "(min-width: 900px) 440px, 84vw"  # ancho de una foto del carrusel
 WEB_FONTS = ["montserrat-latin-400-normal.woff2", "montserrat-latin-500-normal.woff2", "montserrat-latin-600-normal.woff2",
              "OFL-Montserrat.txt"]
 
@@ -87,6 +87,9 @@ T = {
         "hero.cta": "Contame tu idea",
         "work.h2": "Trabajos",
         "work.lead": "En cada foto, el círculo muestra la línea de cerca.",
+        "car.prev": "Foto anterior",
+        "car.next": "Foto siguiente",
+        "car.hint": "Deslizá para ver más trabajos",
         "reviews.h2": "Reseñas",
         "reviews.lead": "5,0 de 5 en Google, con más de 230 reseñas.",
         "reviews.live": "{r} de 5 en Google, con {n} reseñas.",
@@ -151,6 +154,9 @@ T = {
         "hero.cta": "Me conta sua ideia",
         "work.h2": "Trabalhos",
         "work.lead": "Em cada foto, o círculo mostra a linha de perto.",
+        "car.prev": "Foto anterior",
+        "car.next": "Próxima foto",
+        "car.hint": "Deslize para ver mais trabalhos",
         "reviews.h2": "Avaliações",
         "reviews.lead": "Nota 5,0 de 5 no Google, com mais de 230 avaliações.",
         "reviews.live": "Nota {r} de 5 no Google, com {n} avaliações.",
@@ -215,6 +221,9 @@ T = {
         "hero.cta": "Tell me your idea",
         "work.h2": "Work",
         "work.lead": "In each photo, the circle shows the line up close.",
+        "car.prev": "Previous photo",
+        "car.next": "Next photo",
+        "car.hint": "Swipe to see more work",
         "reviews.h2": "Reviews",
         "reviews.lead": "Rated 5.0 out of 5 on Google from more than 230 reviews.",
         "reviews.live": "Rated {r} out of 5 on Google from {n} reviews.",
@@ -279,6 +288,9 @@ T = {
         "hero.cta": "Erzähl mir deine Idee",
         "work.h2": "Arbeiten",
         "work.lead": "Auf jedem Foto zeigt der Kreis die Linie aus der Nähe.",
+        "car.prev": "Vorheriges Foto",
+        "car.next": "Nächstes Foto",
+        "car.hint": "Wischen für mehr Arbeiten",
         "reviews.h2": "Bewertungen",
         "reviews.lead": "5,0 von 5 bei Google mit mehr als 230 Bewertungen.",
         "reviews.live": "{r} von 5 bei Google mit {n} Bewertungen.",
@@ -451,8 +463,9 @@ def build_assets():
         shutil.copyfile(src, os.path.join(OUT, rel))
         w, h = Image.open(src).size
         a["img"][n] = {"url": "/" + rel, "w": w, "h": h}
-        if n == HERO["file"]:
-            # versión chica para el celular: la foto de arriba es lo primero que mide Google (LCP)
+        if w > 720:
+            # versión chica para el celular: el carrusel muestra cada foto a unos 320-440 px de ancho,
+            # y la primera es lo primero que mide Google (LCP)
             small = Image.open(src).convert("RGB")
             small = small.resize((720, round(h * 720 / w)), Image.LANCZOS)
             tmp = os.path.join(OUT, "assets/img/_tmp.webp")
@@ -572,7 +585,9 @@ def photo(item, lang, assets, cls, eager=False):
     alt = ALT_PREFIX[lang] + item["cap"][lang]
     load = 'fetchpriority="high" decoding="async"' if eager else 'loading="lazy" decoding="async"'
     if im.get("srcset"):
-        load += f' srcset="{im["srcset"]}" sizes="{HERO_SIZES}" data-full="{im["url"]}"'
+        load += f' srcset="{im["srcset"]}" sizes="{HERO_SIZES}"'
+        if item is HERO:
+            load += f' data-full="{im["url"]}"'  # solo la de portada pasa la lupa a la foto grande
     return (f'<img src="{im["url"]}" width="{im["w"]}" height="{im["h"]}" alt="{esc(alt)}" {load} style="object-position:{item["pos"]}">'
             f'<span class="loupe" aria-hidden="true" style="background-position:{item["focus"]}"></span>')
 
@@ -585,9 +600,14 @@ def home_page(lang, assets):
     # x-default es /es/: la portada (/) ya no es una página, redirige ahí
     alternates = [(l, "/%s/" % l) for l in LANGS] + [("x-default", "/es/")]
     extra = hero_preload(assets) + ld_json(path, lang)
-    works = "\n".join(
-        f'<figure class="work"><div class="work-photo" data-loupe>{photo(w, lang, assets, "work")}</div><figcaption>{esc(w["cap"][lang])}</figcaption></figure>'
-        for w in WORKS)
+    # Carrusel de trabajos: arriba de todo; la primera foto es la de portada (se precarga, cuenta para el LCP)
+    shots = [HERO] + WORKS
+    n = len(shots)
+    slides = "\n".join(
+        f'<li class="slide" aria-roledescription="slide" aria-label="{i + 1} / {n}">'
+        f'<figure class="work"><div class="work-photo" data-loupe>{photo(w, lang, assets, "work", eager=(i == 0))}</div>'
+        f'<figcaption>{esc(w["cap"][lang])}</figcaption></figure></li>'
+        for i, w in enumerate(shots))
     runtime = {"lang": lang, "locale": LOCALE[lang], "apiLang": API_LANG[lang],
                "t": {k: t[k] for k in RUNTIME_KEYS},
                "sizes": t["sizes"], "sizesEs": T["es"]["sizes"]}
@@ -596,24 +616,31 @@ def home_page(lang, assets):
 <a class="skip" href="#idea">{esc(t["skip"])}</a>
 <div class="band"><div class="wrap">
 {top(lang, paths, path)}
-<section class="hero" aria-labelledby="h-hero">
-<figure class="hero-photo" data-loupe>{photo(HERO, lang, assets, "hero", eager=True)}</figure>
-<div class="hero-text">
+</div>
+<section class="showcase" id="trabajos" aria-labelledby="h-hero">
+<div class="carousel">
+<ul class="track" id="track" tabindex="0" aria-roledescription="carrusel" aria-label="{esc(t["work.h2"])}">
+{slides}
+</ul>
+<div class="wrap car-bar">
+<p class="car-hint"><span class="car-count" aria-hidden="true"><b id="car-now">1</b> / {n}</span> {esc(t["car.hint"])}</p>
+<div class="car-nav">
+<button type="button" class="car-btn" data-dir="-1" aria-controls="track" aria-label="{esc(t["car.prev"])}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+<button type="button" class="car-btn" data-dir="1" aria-controls="track" aria-label="{esc(t["car.next"])}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+</div>
+</div>
+<div class="wrap"><div class="car-progress" aria-hidden="true"><span id="car-fill"></span></div></div>
+</div>
+<div class="wrap hero-text">
 <h1 id="h-hero">{esc(t["hero.h1"])}</h1>
 <p class="lead">{esc(t["hero.lead"])}</p>
 <p class="proof"><span class="stars" aria-hidden="true">★★★★★</span><span>{esc(t["hero.proof"])}</span><a href="#resenas">{esc(t["hero.proofLink"])}</a></p>
 <a class="btn" id="hero-cta" href="#idea">{esc(t["hero.cta"])}</a>
+<p class="sub">{esc(t["work.lead"])}</p>
 </div>
 </section>
-</div></div>
+</div>
 <main id="inicio" class="wrap">
-
-<section class="block" id="trabajos" aria-labelledby="h-work">
-<div class="block-head"><h2 id="h-work">{esc(t["work.h2"])}</h2><p class="sub">{esc(t["work.lead"])}</p></div>
-<div class="works">
-{works}
-</div>
-</section>
 
 <section class="block" id="resenas" aria-labelledby="h-reviews">
 <div class="block-head"><h2 id="h-reviews">{esc(t["reviews.h2"])}</h2><p class="big" id="reviews-summary">{esc(t["reviews.lead"])}</p></div>
@@ -675,7 +702,7 @@ def home_page(lang, assets):
 </section>
 </main>
 <div class="wrap">{foot(lang)}</div>
-<div class="sticky" id="sticky" hidden><a class="btn" href="#idea">{esc(t["sticky"])}</a></div>
+<div class="sticky" id="sticky" hidden><a class="sticky-proof" href="#resenas"><span class="stars" aria-hidden="true">★★★★★</span> {esc(t["hero.proof"])}</a><a class="btn" href="#idea">{esc(t["sticky"])}</a></div>
 <script id="eds-page" type="application/json">{runtime_json}</script>
 </body>
 </html>

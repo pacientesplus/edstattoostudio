@@ -82,7 +82,10 @@
   }
 
   /* Etiqueta de Google (Analytics + Ads), sin Tag Manager */
-  const tagIds = [CONFIG.analyticsId, CONFIG.googleAdsId].filter(Boolean);
+  /* Las etiquetas de Google solo corren en el dominio real: en las vistas previas (*.pages.dev) o en la PC
+     una prueba del formulario no tiene que contar como consulta en Google Ads ni como visita en Analytics */
+  const liveHost = /(^|\.)edstattoostudio\.com$/.test(location.hostname);
+  const tagIds = liveHost ? [CONFIG.analyticsId, CONFIG.googleAdsId].filter(Boolean) : [];
   const consentState = (on) => {
     const v = on ? "granted" : "denied";
     return { ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v };
@@ -416,19 +419,76 @@
     });
   }
 
+  /* Botón fijo del celular: entra desde abajo cuando el botón de arriba ya no se ve y se va
+     cuando aparece el formulario (mismo camino de ida y de vuelta) */
   function initSticky() {
     const sticky = $("sticky");
-    if (!("IntersectionObserver" in window)) return;
+    if (!sticky || !("IntersectionObserver" in window)) return;
+    sticky.hidden = false;
     let heroVisible = true, formVisible = false;
     const io = new IntersectionObserver((entries) => {
       entries.forEach((en) => {
         if (en.target.id === "hero-cta") heroVisible = en.isIntersecting;
         if (en.target.id === "idea") formVisible = en.isIntersecting;
       });
-      sticky.hidden = heroVisible || formVisible;
+      const on = !heroVisible && !formVisible;
+      sticky.classList.toggle("on", on);
+      sticky.inert = !on;
     });
     io.observe($("hero-cta"));
     io.observe($("idea"));
+  }
+
+  /* Carrusel de trabajos: el desplazamiento lo hace el navegador (dedo 1:1, inercia e imán nativos);
+     acá solo se lleva la cuenta, la barrita de avance y las flechas de la computadora */
+  function initCarousel() {
+    const track = $("track");
+    if (!track) return;
+    const slides = track.children;
+    const now = $("car-now"), fill = $("car-fill");
+    const btns = document.querySelectorAll(".car-btn");
+    const step = () => {
+      const a = slides[0], b = slides[1];
+      return b ? b.offsetLeft - a.offsetLeft : track.clientWidth;
+    };
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const max = track.scrollWidth - track.clientWidth;
+      const x = Math.min(Math.max(track.scrollLeft, 0), max);
+      const i = Math.min(slides.length - 1, Math.round(x / step()));
+      now.textContent = String(i + 1);
+      const p = max > 0 ? x / max : 1;
+      fill.style.transform = "scaleX(" + Math.max(0.08, p).toFixed(4) + ")";
+      btns.forEach((btn) => {
+        const end = btn.dataset.dir === "-1" ? x <= 2 : x >= max - 2;
+        btn.setAttribute("aria-disabled", String(end));
+      });
+    };
+    track.addEventListener("scroll", () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    window.addEventListener("resize", update, { passive: true });
+    btns.forEach((btn) => btn.addEventListener("click", () => {
+      if (btn.getAttribute("aria-disabled") === "true") return;
+      track.scrollBy({ left: Number(btn.dataset.dir) * step(), behavior: reducedMotion() ? "auto" : "smooth" });
+    }));
+    update();
+  }
+
+  /* Secciones que aparecen al bajar. Solo se esconden las que todavía no se ven,
+     así nada de lo que ya está en pantalla parpadea al cargar */
+  function initReveal() {
+    if (!("IntersectionObserver" in window)) return;
+    const blocks = [...document.querySelectorAll("main .block")]
+      .filter((el) => el.getBoundingClientRect().top > window.innerHeight);
+    if (!blocks.length) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { rootMargin: "0px 0px -12% 0px" });
+    blocks.forEach((el) => { el.classList.add("reveal"); io.observe(el); });
   }
 
   /* Arranque */
@@ -444,5 +504,7 @@
   });
   initCopy();
   initSticky();
+  initCarousel();
+  initReveal();
   initReviews();
 })();
