@@ -37,6 +37,7 @@ PRIVACY_SLUG = {"es": "privacidad", "pt": "privacidade", "en": "privacy", "de": 
 LANG_NAME = {"es": "Español", "pt": "Português", "en": "English", "de": "Deutsch"}
 NAV_ORDER = ["es", "en", "pt", "de"]  # orden de la barra de idiomas
 ALT_PREFIX = {"es": "Tatuaje: ", "pt": "Tatuagem: ", "en": "Tattoo: ", "de": "Tattoo: "}
+BG_PHOTO = "sol-omoplato.webp"  # foto que, muy difuminada, tiñe el fondo de la página
 HERO_SIZES = "(min-width: 900px) 440px, 84vw"  # ancho de una foto del carrusel
 WEB_FONTS = ["montserrat-latin-400-normal.woff2", "montserrat-latin-500-normal.woff2", "montserrat-latin-600-normal.woff2",
              "OFL-Montserrat.txt"]
@@ -81,7 +82,7 @@ T = {
         "skip": "Ir al formulario",
         "nav.lang": "Idioma",
         "hero.h1": "Tatuajes fine line en el centro de Buenos Aires",
-        "hero.lead": "Soy Eduardo. Me especializo en línea fina y tatúo en mi estudio de San Martín 569, en Microcentro.",
+        "hero.lead": "Soy Eduardo. Tengo más de 10 años de experiencia en el tatuaje y me especializo en línea fina. Tatúo en mi estudio de San Martín 569, Microcentro, Buenos Aires.",
         "hero.proof": "5,0 en Google, con más de 230 reseñas",
         "hero.proofLink": "Leer reseñas",
         "hero.cta": "Contame tu idea",
@@ -99,21 +100,21 @@ T = {
         "reviews.starsLabel": "{n} de 5 estrellas",
         "reviews.link": "Leer todas en Google",
         "steps.h2": "Cómo es",
-        "steps.1": "Me contás tu idea en el formulario: qué te querés hacer, el tamaño y si vivís acá o estás de visita.",
-        "steps.2": "Se abre WhatsApp con todo ya escrito. Lo mandás y, si tenés una foto de referencia, la sumás ahí.",
-        "steps.3": "Te respondo por WhatsApp y vemos diseño, precio y día.",
+        "steps.1": "Me contás tu idea",
+        "steps.2": "Se abre WhatsApp con todo escrito",
+        "steps.3": "Te respondo y coordinamos el turno",
         "form.h2": "Contame tu idea",
-        "form.lead": "Son cuatro datos y se abre WhatsApp con tu mensaje listo.",
-        "f.idea": "Corta descripción de lo que te querés hacer",
+        "form.lead": "Cuatro datos y listo.",
+        "f.idea": "Tu idea",
         "f.idea.ph": "Ej.: una rama de olivo con hojas chiquitas",
         "f.zone": "Zona del cuerpo",
-        "f.size": "Tamaño aproximado",
+        "f.size": "Tamaño",
         "f.stay": "¿Vivís en Buenos Aires o estás de visita?",
         "f.leave": "¿Qué día te vas?",
         "f.name": "Tu nombre",
         "f.phone": "Tu WhatsApp, con código de país",
         "f.phone.ph": "+54 9 11 1234 5678",
-        "f.privacy": "Tu número se usa para responderte y, cifrado, para medir qué anuncios traen consultas.",
+        "f.privacy": "Tu número se usa para responderte y, cifrado, para medir anuncios.",
         "f.privacyLink": "Política de privacidad",
         "f.submit": "Mandar por WhatsApp",
         "f.submitNote": "Se abre WhatsApp con tu mensaje ya escrito.",
@@ -148,7 +149,7 @@ T = {
         "skip": "Ir para o formulário",
         "nav.lang": "Idioma",
         "hero.h1": "Tatuagens fine line no centro de Buenos Aires",
-        "hero.lead": "Eu sou o Eduardo, especialista em fine line. Tatuo no meu estúdio na San Martín 569, no Microcentro.",
+        "hero.lead": "Sou o Eduardo. Tatuo há mais de 10 anos e sou especialista em fine line. Trabalho no meu estúdio na San Martín 569, Microcentro, Buenos Aires.",
         "hero.proof": "Nota 5,0 no Google, com mais de 230 avaliações",
         "hero.proofLink": "Ler avaliações",
         "hero.cta": "Me conta sua ideia",
@@ -166,21 +167,21 @@ T = {
         "reviews.starsLabel": "{n} de 5 estrelas",
         "reviews.link": "Ler todas no Google",
         "steps.h2": "Como funciona",
-        "steps.1": "Você me conta sua ideia no formulário: o que quer fazer, o tamanho e se mora aqui ou está de visita.",
-        "steps.2": "O WhatsApp abre com tudo já escrito. Você envia e, se tiver uma foto de referência, manda junto.",
-        "steps.3": "Eu respondo pelo WhatsApp e combinamos desenho, preço e dia.",
+        "steps.1": "Você me conta sua ideia",
+        "steps.2": "O WhatsApp abre com tudo escrito",
+        "steps.3": "Eu respondo e marcamos o horário",
         "form.h2": "Me conta sua ideia",
-        "form.lead": "São quatro dados e o WhatsApp abre com sua mensagem pronta.",
-        "f.idea": "Breve descrição do que você quer fazer",
+        "form.lead": "Quatro dados e pronto.",
+        "f.idea": "Sua ideia",
         "f.idea.ph": "Ex.: um raminho de oliveira com folhas pequenas",
         "f.zone": "Local do corpo",
-        "f.size": "Tamanho aproximado",
+        "f.size": "Tamanho",
         "f.stay": "Você mora em Buenos Aires ou está de visita?",
         "f.leave": "Que dia você vai embora?",
         "f.name": "Seu nome",
         "f.phone": "Seu WhatsApp, com código do país",
         "f.phone.ph": "+55 11 91234 5678",
-        "f.privacy": "Seu número é usado para te responder e, criptografado, para medir quais anúncios trazem contatos.",
+        "f.privacy": "Seu número é usado para te responder e, criptografado, para medir anúncios.",
         "f.privacyLink": "Política de privacidade",
         "f.submit": "Enviar pelo WhatsApp",
         "f.submitNote": "O WhatsApp abre com sua mensagem já escrita.",
@@ -215,7 +216,7 @@ T = {
         "skip": "Skip to the form",
         "nav.lang": "Language",
         "hero.h1": "Fine line tattoos in downtown Buenos Aires",
-        "hero.lead": "I'm Eduardo. I specialize in fine line and tattoo at my studio at San Martín 569, in Microcentro.",
+        "hero.lead": "I'm Eduardo. I've been tattooing for over 10 years and I specialize in fine line. I work at my studio at San Martín 569, Microcentro, Buenos Aires.",
         "hero.proof": "Rated 5.0 on Google from more than 230 reviews",
         "hero.proofLink": "Read reviews",
         "hero.cta": "Tell me your idea",
@@ -233,21 +234,21 @@ T = {
         "reviews.starsLabel": "{n} out of 5 stars",
         "reviews.link": "Read them all on Google",
         "steps.h2": "How it works",
-        "steps.1": "Tell me your idea in the form: what you want, the size, and whether you live here or are visiting.",
-        "steps.2": "WhatsApp opens with everything already written. Send it, and add a reference photo there if you have one.",
-        "steps.3": "I reply on WhatsApp and we settle the design, price and day.",
+        "steps.1": "Tell me your idea",
+        "steps.2": "WhatsApp opens with it all written",
+        "steps.3": "I reply and we book your session",
         "form.h2": "Tell me your idea",
-        "form.lead": "Four quick answers and WhatsApp opens with your message ready.",
-        "f.idea": "Short description of what you want",
+        "form.lead": "Four quick answers and you're done.",
+        "f.idea": "Your idea",
         "f.idea.ph": "E.g. an olive branch with tiny leaves",
         "f.zone": "Placement",
-        "f.size": "Approximate size",
+        "f.size": "Size",
         "f.stay": "Do you live in Buenos Aires or are you visiting?",
         "f.leave": "What day do you leave?",
         "f.name": "Your name",
         "f.phone": "Your WhatsApp, with country code",
         "f.phone.ph": "+1 212 555 0123",
-        "f.privacy": "Your number is used to reply to you and, encrypted, to measure which ads bring inquiries.",
+        "f.privacy": "Your number is used to reply to you and, encrypted, to measure ads.",
         "f.privacyLink": "Privacy policy",
         "f.submit": "Send via WhatsApp",
         "f.submitNote": "WhatsApp opens with your message already written.",
@@ -282,7 +283,7 @@ T = {
         "skip": "Zum Formular springen",
         "nav.lang": "Sprache",
         "hero.h1": "Fine-Line-Tattoos im Zentrum von Buenos Aires",
-        "hero.lead": "Ich bin Eduardo, spezialisiert auf Fine Line. Ich tätowiere in meinem Studio in der San Martín 569 im Microcentro.",
+        "hero.lead": "Ich bin Eduardo. Ich tätowiere seit über 10 Jahren und bin auf Fine Line spezialisiert. Du findest mich in meinem Studio in der San Martín 569, Microcentro, Buenos Aires.",
         "hero.proof": "5,0 bei Google mit mehr als 230 Bewertungen",
         "hero.proofLink": "Bewertungen lesen",
         "hero.cta": "Erzähl mir deine Idee",
@@ -300,21 +301,21 @@ T = {
         "reviews.starsLabel": "{n} von 5 Sternen",
         "reviews.link": "Alle auf Google lesen",
         "steps.h2": "So läuft es ab",
-        "steps.1": "Du erzählst mir deine Idee im Formular: was du dir machen lassen willst, die Größe und ob du hier wohnst oder zu Besuch bist.",
-        "steps.2": "WhatsApp öffnet sich mit allem schon ausgefüllt. Du schickst es ab und hängst dort ein Referenzbild an, wenn du eins hast.",
-        "steps.3": "Ich antworte dir auf WhatsApp und wir klären Motiv, Preis und Termin.",
+        "steps.1": "Du erzählst mir deine Idee",
+        "steps.2": "WhatsApp öffnet sich, alles schon geschrieben",
+        "steps.3": "Ich antworte und wir machen einen Termin aus",
         "form.h2": "Erzähl mir deine Idee",
-        "form.lead": "Vier Angaben, und WhatsApp öffnet sich mit deiner fertigen Nachricht.",
-        "f.idea": "Kurze Beschreibung, was du dir machen lassen willst",
+        "form.lead": "Vier Angaben, fertig.",
+        "f.idea": "Deine Idee",
         "f.idea.ph": "Z. B. ein Olivenzweig mit kleinen Blättern",
         "f.zone": "Körperstelle",
-        "f.size": "Ungefähre Größe",
+        "f.size": "Größe",
         "f.stay": "Wohnst du in Buenos Aires oder bist du zu Besuch?",
         "f.leave": "Wann reist du ab?",
         "f.name": "Dein Name",
         "f.phone": "Deine WhatsApp-Nummer mit Ländervorwahl",
         "f.phone.ph": "+49 151 23456789",
-        "f.privacy": "Deine Nummer wird genutzt, um dir zu antworten, und verschlüsselt, um zu messen, welche Anzeigen Anfragen bringen.",
+        "f.privacy": "Deine Nummer dient zum Antworten und, verschlüsselt, zur Anzeigenmessung.",
         "f.privacyLink": "Datenschutzerklärung",
         "f.submit": "Per WhatsApp senden",
         "f.submitNote": "WhatsApp öffnet sich mit deiner Nachricht, schon fertig geschrieben.",
@@ -473,6 +474,19 @@ def build_assets():
             rel_s = "assets/img/%s-720.%s%s" % (base, h8(tmp), ext)
             os.replace(tmp, os.path.join(OUT, rel_s))
             a["img"][n]["srcset"] = "/%s 720w, /%s %dw" % (rel_s, rel, w)
+    # fondo de la página: la foto de portada difuminada de antemano, en un archivo de pocos KB
+    # con poco color: que quede un tono cálido de piel y no el azul del neón (nada chillón)
+    from PIL import ImageEnhance, ImageFilter
+    bg = Image.open(os.path.join(SRC, "img", BG_PHOTO)).convert("RGB")
+    bg = bg.resize((48, round(bg.size[1] * 48 / bg.size[0])), Image.LANCZOS).filter(ImageFilter.GaussianBlur(5))
+    bg = ImageEnhance.Color(bg).enhance(0.3)
+    bg = Image.blend(bg, Image.new("RGB", bg.size, (196, 170, 150)), 0.35)
+    bg = bg.resize((480, round(bg.size[1] * 10)), Image.BICUBIC).filter(ImageFilter.GaussianBlur(18))
+    tmp = os.path.join(OUT, "assets/img/_bg.webp")
+    bg.save(tmp, "WEBP", quality=60, method=6)
+    rel_bg = "assets/img/fondo.%s.webp" % h8(tmp)
+    os.replace(tmp, os.path.join(OUT, rel_bg))
+    a["bg"] = "/" + rel_bg
     brand = os.path.join(SRC, "brand")
     for n in os.listdir(brand):
         shutil.copyfile(os.path.join(brand, n), os.path.join(OUT, n))
@@ -512,6 +526,7 @@ def head(lang_attr, title, desc, path, alternates, assets, og_locale, og_alt, ex
 <link rel="preload" href="/assets/fonts/montserrat-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/montserrat-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 {extra}<link rel="stylesheet" href="{assets['css']}">
+<style>:root{{--bg-photo:url("{assets['bg']}")}}</style>
 <script src="{assets['js']}" defer></script>
 </head>
 """
@@ -634,22 +649,12 @@ def home_page(lang, assets):
 <div class="wrap hero-text">
 <h1 id="h-hero">{esc(t["hero.h1"])}</h1>
 <p class="lead">{esc(t["hero.lead"])}</p>
-<p class="proof"><span class="stars" aria-hidden="true">★★★★★</span><span>{esc(t["hero.proof"])}</span><a href="#resenas">{esc(t["hero.proofLink"])}</a></p>
+<p class="proof"><span class="stars" aria-hidden="true">★★★★★</span><span>{esc(t["hero.proof"])}</span><a href="{esc(MAPS_REVIEWS)}" target="_blank" rel="noopener">{esc(t["hero.proofLink"])}</a></p>
 <a class="btn" id="hero-cta" href="#idea">{esc(t["hero.cta"])}</a>
-<p class="sub">{esc(t["work.lead"])}</p>
 </div>
 </section>
 </div>
 <main id="inicio" class="wrap">
-
-<section class="block" id="resenas" aria-labelledby="h-reviews">
-<div class="block-head"><h2 id="h-reviews">{esc(t["reviews.h2"])}</h2><p class="big" id="reviews-summary">{esc(t["reviews.lead"])}</p></div>
-<div class="gm-box" id="gm-box" hidden>
-<ol class="reviews" id="reviews-list"></ol>
-<div class="gm-foot"><span>{esc(t["reviews.order"])}</span><span class="gm-attr" translate="no">Google Maps</span></div>
-</div>
-<div class="links"><a id="reviews-link" href="{esc(MAPS_REVIEWS)}" target="_blank" rel="noopener">{esc(t["reviews.link"])}</a></div>
-</section>
 
 <section class="block" id="como" aria-labelledby="h-steps">
 <div class="block-head"><h2 id="h-steps">{esc(t["steps.h2"])}</h2></div>
@@ -677,8 +682,7 @@ def home_page(lang, assets):
 <p class="error" id="err-phone" hidden></p>
 </div>
 <div class="submit-row">
-<button class="btn" type="submit" id="f-submit">{esc(t["f.submit"])}</button>
-<p class="hint">{esc(t["f.submitNote"])}</p>
+<button class="btn btn-wa" type="submit" id="f-submit"><svg class="wa-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.7-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3z"/></svg><span>{esc(t["f.submit"])}</span></button>
 <p class="hint">{esc(t["f.privacy"])} <a href="/{lang}/{PRIVACY_SLUG[lang]}/">{esc(t["f.privacyLink"])}</a></p>
 </div>
 </form>
@@ -697,12 +701,14 @@ def home_page(lang, assets):
 
 <section class="block" id="donde" aria-labelledby="h-place">
 <div class="block-head"><h2 id="h-place">{esc(t["place.h2"])}</h2></div>
+<div class="place-card">
 <p class="big"><a href="{esc(MAPS_REVIEWS)}" target="_blank" rel="noopener">{esc(t["place.addr"])}</a></p>
 <div class="links"><a href="{esc(MAPS_DIRECTIONS)}" target="_blank" rel="noopener">{esc(t["place.link"])}</a></div>
+</div>
 </section>
 </main>
 <div class="wrap">{foot(lang)}</div>
-<div class="sticky" id="sticky" hidden><a class="sticky-proof" href="#resenas"><span class="stars" aria-hidden="true">★★★★★</span> {esc(t["hero.proof"])}</a><a class="btn" href="#idea">{esc(t["sticky"])}</a></div>
+<div class="sticky" id="sticky" hidden><a class="sticky-proof" href="{esc(MAPS_REVIEWS)}" target="_blank" rel="noopener"><span class="stars" aria-hidden="true">★★★★★</span> {esc(t["hero.proof"])}</a><a class="btn" href="#idea">{esc(t["sticky"])}</a></div>
 <script id="eds-page" type="application/json">{runtime_json}</script>
 </body>
 </html>

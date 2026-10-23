@@ -391,7 +391,7 @@
   }
 
   function initReviews() {
-    if (!CONFIG.googleMapsKey) return;
+    if (!CONFIG.googleMapsKey || !$("resenas")) return;
     const go = () => {
       if (reviewsRequested) return;
       reviewsRequested = true;
@@ -491,6 +491,21 @@
     blocks.forEach((el) => { el.classList.add("reveal"); io.observe(el); });
   }
 
+  /* Botón de mandar: neutro hasta que están los cuatro datos, verde WhatsApp cuando ya se puede.
+     Sigue siempre activo: si falta algo y lo tocan, se marcan los errores como antes */
+  function initReady() {
+    const btn = $("f-submit");
+    if (!btn) return;
+    const check = () => {
+      const ok = $("f-idea").value.trim() !== "" && checkedIdx("size") >= 0 &&
+        checkedIdx("stay") >= 0 && !!normPhone($("f-phone").value);
+      btn.classList.toggle("ready", ok);
+    };
+    form.addEventListener("input", check);
+    form.addEventListener("change", check);
+    check();
+  }
+
   /* Arranque */
   const form = $("lead-form");
   form.addEventListener("submit", onSubmit);
@@ -503,6 +518,7 @@
     if (n === "idea" || n === "phone") clearError(n);
   });
   initCopy();
+  initReady();
   initSticky();
   initCarousel();
   initReveal();
