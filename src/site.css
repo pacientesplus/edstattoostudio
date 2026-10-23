@@ -105,9 +105,15 @@ p{margin:0}
 .langs a[aria-current="page"]{color:var(--ink);font-weight:600}
 
 /* dark band: header + hero */
+/* parte de arriba: la cúpula del Teatro Colón, difuminada y en penumbra; los velos oscuros de arriba y de
+   abajo aseguran que el texto blanco se lea sobre cualquier zona de la foto */
 .band{
-  background:radial-gradient(120% 75% at 12% 0%, var(--band-top) 0%, var(--band-mid) 52%, var(--band-end) 100%);
-  color:var(--band-ink);
+  position:relative;isolation:isolate;color:var(--band-ink);
+  background:
+    linear-gradient(180deg, rgba(8,6,6,.42) 0%, rgba(8,6,6,.18) 18%, rgba(8,6,6,.42) 48%, rgba(6,5,5,.86) 76%, #050404 100%),
+    radial-gradient(90% 60% at 50% 18%, rgba(255,196,110,.16) 0%, rgba(255,196,110,0) 70%),
+    var(--band-photo, none) center top / max(100%, 820px) auto no-repeat,
+    var(--band-mid);
 }
 .band > .wrap{padding-bottom:4px}
 .band .mark{color:var(--band-ink)}
@@ -310,6 +316,7 @@ textarea.input{min-height:72px;resize:vertical;line-height:1.5}
 /* footer */
 .foot{display:grid;gap:4px;margin-top:clamp(56px, 9vw, 104px);padding-block:26px;border-top:1px solid var(--hairline);color:var(--graphite);font-size:var(--step--1)}
 .foot nav{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:6px}
+.credit{margin-top:10px;font-size:.75rem;line-height:1.45;color:var(--graphite)}
 
 /* sticky booking bar on phones */
 /* material translúcido: el contenido pasa por debajo; entra desde abajo y sale por el mismo camino */

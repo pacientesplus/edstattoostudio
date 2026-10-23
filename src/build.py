@@ -37,7 +37,17 @@ PRIVACY_SLUG = {"es": "privacidad", "pt": "privacidade", "en": "privacy", "de": 
 LANG_NAME = {"es": "Español", "pt": "Português", "en": "English", "de": "Deutsch"}
 NAV_ORDER = ["es", "en", "pt", "de"]  # orden de la barra de idiomas
 ALT_PREFIX = {"es": "Tatuaje: ", "pt": "Tatuagem: ", "en": "Tattoo: ", "de": "Tattoo: "}
-BG_PHOTO = "sol-omoplato.webp"  # foto que, muy difuminada, tiñe el fondo de la página
+# Fondo: cúpula de la sala del Teatro Colón. Licencia CC BY-SA 4.0: hay que dar crédito (va al pie de cada página)
+# y los fondos derivados (difuminados) quedan bajo la misma licencia.
+BG_PHOTO = "teatro-colon-cupula.webp"  # en src/fondo/
+BG_CREDIT = {
+    "label": {"es": "Fondo", "pt": "Fundo", "en": "Background", "de": "Hintergrund"},
+    "what": {"es": "cúpula del Teatro Colón", "pt": "cúpula do Teatro Colón", "en": "Teatro Colón dome", "de": "Kuppel des Teatro Colón"},
+    "by": "Leandro Kibisz",
+    "src": "https://commons.wikimedia.org/wiki/File:Argentina_-_Buenos_Aires_-_Teatro_Col%C3%B3n_(c%C3%BApula_de_la_sala).JPG",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+}
 HERO_SIZES = "(min-width: 900px) 440px, 84vw"  # ancho de una foto del carrusel
 WEB_FONTS = ["montserrat-latin-400-normal.woff2", "montserrat-latin-500-normal.woff2", "montserrat-latin-600-normal.woff2",
              "OFL-Montserrat.txt"]
@@ -474,19 +484,25 @@ def build_assets():
             rel_s = "assets/img/%s-720.%s%s" % (base, h8(tmp), ext)
             os.replace(tmp, os.path.join(OUT, rel_s))
             a["img"][n]["srcset"] = "/%s 720w, /%s %dw" % (rel_s, rel, w)
-    # fondo de la página: la foto de portada difuminada de antemano, en un archivo de pocos KB
-    # con poco color: que quede un tono cálido de piel y no el azul del neón (nada chillón)
+    # Fondos, de la cúpula del Teatro Colón (ver BG_CREDIT); se difuminan acá, no en el teléfono.
     from PIL import ImageEnhance, ImageFilter
-    bg = Image.open(os.path.join(SRC, "img", BG_PHOTO)).convert("RGB")
-    bg = bg.resize((48, round(bg.size[1] * 48 / bg.size[0])), Image.LANCZOS).filter(ImageFilter.GaussianBlur(5))
-    bg = ImageEnhance.Color(bg).enhance(0.3)
-    bg = Image.blend(bg, Image.new("RGB", bg.size, (196, 170, 150)), 0.35)
+    colon = Image.open(os.path.join(SRC, "fondo", BG_PHOTO)).convert("RGB")
+
+    def save_bg(im, name, q):
+        tmp = os.path.join(OUT, "assets/img/_bg.webp")
+        im.save(tmp, "WEBP", quality=q, method=6)
+        rel = "assets/img/%s.%s.webp" % (name, h8(tmp))
+        os.replace(tmp, os.path.join(OUT, rel))
+        return "/" + rel
+
+    # 1) parte oscura de arriba: apenas difuminada, se reconocen los palcos y el candelabro
+    band = colon.resize((720, round(colon.size[1] * 720 / colon.size[0])), Image.LANCZOS).filter(ImageFilter.GaussianBlur(1.6))
+    a["band"] = save_bg(ImageEnhance.Brightness(band).enhance(0.92), "fondo-arriba", 62)
+    # 2) resto de la página: muy difuminada y con poco color, solo un velo dorado cálido (archivo de pocos KB)
+    bg = colon.resize((48, round(colon.size[1] * 48 / colon.size[0])), Image.LANCZOS).filter(ImageFilter.GaussianBlur(4))
+    bg = Image.blend(ImageEnhance.Color(bg).enhance(0.55), Image.new("RGB", bg.size, (214, 190, 160)), 0.3)
     bg = bg.resize((480, round(bg.size[1] * 10)), Image.BICUBIC).filter(ImageFilter.GaussianBlur(18))
-    tmp = os.path.join(OUT, "assets/img/_bg.webp")
-    bg.save(tmp, "WEBP", quality=60, method=6)
-    rel_bg = "assets/img/fondo.%s.webp" % h8(tmp)
-    os.replace(tmp, os.path.join(OUT, rel_bg))
-    a["bg"] = "/" + rel_bg
+    a["bg"] = save_bg(bg, "fondo", 60)
     brand = os.path.join(SRC, "brand")
     for n in os.listdir(brand):
         shutil.copyfile(os.path.join(brand, n), os.path.join(OUT, n))
@@ -526,7 +542,7 @@ def head(lang_attr, title, desc, path, alternates, assets, og_locale, og_alt, ex
 <link rel="preload" href="/assets/fonts/montserrat-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/montserrat-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 {extra}<link rel="stylesheet" href="{assets['css']}">
-<style>:root{{--bg-photo:url("{assets['bg']}")}}</style>
+<style>:root{{--bg-photo:url("{assets['bg']}");--band-photo:url("{assets['band']}")}}</style>
 <script src="{assets['js']}" defer></script>
 </head>
 """
@@ -576,6 +592,12 @@ def top(lang, paths, home):
 """
 
 
+def bg_credit(lang):
+    c = BG_CREDIT
+    return (f'<p class="credit">{c["label"][lang]}: <a href="{c["src"]}" target="_blank" rel="noopener">{c["what"][lang]}</a>, '
+            f'{c["by"]}, <a href="{c["license_url"]}" target="_blank" rel="noopener license">{c["license"]}</a></p>')
+
+
 def foot(lang):
     t = T[lang]
     others = "".join(f'<a href="/{l}/" hreflang="{l}" lang="{HTML_LANG[l]}">{LANG_NAME[l]}</a>' for l in NAV_ORDER)
@@ -584,6 +606,7 @@ def foot(lang):
 <a href="{esc(MAPS_REVIEWS)}" target="_blank" rel="noopener">{esc(t["place.addr"])}</a>
 <a href="{WA_URL}" target="_blank" rel="noopener">WhatsApp {PHONE_LABEL}</a>
 <nav aria-label="{esc(t["nav.lang"])}"><a href="/{lang}/{PRIVACY_SLUG[lang]}/">{esc(t["foot.privacy"])}</a><button type="button" class="linkish" data-cookie-settings>Cookies</button>{others}</nav>
+{bg_credit(lang)}
 </footer>
 """
 
@@ -757,6 +780,7 @@ def not_found_page(assets):
 <main class="prose">
 <h1>404</h1>
 {lines}
+{bg_credit("en")}
 </main>
 </div>
 </body>
