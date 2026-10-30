@@ -89,16 +89,17 @@ WORKS = [
 
 T = {
     "es": {
+        "hero.kicker": "Estudio privado · Microcentro",
         "work.title": "Parte de nuestro trabajo",
         "cue.work": "Antes de elegirnos, chequeá nuestro trabajo",
         "cue.reviews": "Antes de elegirnos, chequeá nuestras reseñas",
         "meta.title": "Tatuajes fine line y realismo en Buenos Aires | EDS Tattoo Studio",
-        "meta.desc": "Estudio de tatuajes especializado en fine line y realismo black and gray, en Microcentro, Buenos Aires. 5,0 en Google con más de 250 reseñas. Contanos tu idea por WhatsApp.",
+        "meta.desc": "Estudio privado de tatuajes especializado en fine line y realismo black and gray, en Microcentro, Buenos Aires. 5,0 en Google con más de 250 reseñas. Contanos tu idea por WhatsApp.",
         "og.alt": "Tatuaje fine line del Sol de Mayo en el omóplato",
         "skip": "Ir al formulario",
         "nav.lang": "Idioma",
         "hero.h1": "Fine line y realismo black and gray en el centro de Buenos Aires",
-        "hero.lead": "Somos un estudio de tatuajes especializado en fine line y realismo black and gray: líneas finas y precisas, y retratos y figuras en negro y gris con el detalle de una foto. Estamos en San Martín 569, Microcentro, Buenos Aires.",
+        "hero.lead": "Somos un estudio privado de tatuajes especializado en fine line y realismo black and gray: líneas finas y precisas, y retratos y figuras en negro y gris con el detalle de una foto. Estamos en San Martín 569, Microcentro, Buenos Aires.",
         "hero.proof": "5,0 en Google, con más de 250 reseñas",
         "hero.proofLink": "Leer reseñas",
         "hero.cta": "Contanos tu idea",
@@ -159,16 +160,17 @@ T = {
         "stay": ["Vivo acá", "Estoy de visita"],
     },
     "pt": {
+        "hero.kicker": "Estúdio privado · Microcentro",
         "work.title": "Parte do nosso trabalho",
         "cue.work": "Antes de nos escolher, confira nosso trabalho",
         "cue.reviews": "Antes de nos escolher, confira nossas avaliações",
         "meta.title": "Tatuagem fine line e realismo em Buenos Aires | EDS Tattoo Studio",
-        "meta.desc": "Estúdio de tatuagem especializado em fine line e realismo black and gray, no Microcentro de Buenos Aires. Nota 5,0 no Google com mais de 250 avaliações. Conta sua ideia pelo WhatsApp.",
+        "meta.desc": "Estúdio privado de tatuagem especializado em fine line e realismo black and gray, no Microcentro de Buenos Aires. Nota 5,0 no Google com mais de 250 avaliações. Conta sua ideia pelo WhatsApp.",
         "og.alt": "Tatuagem fine line do sol argentino na omoplata",
         "skip": "Ir para o formulário",
         "nav.lang": "Idioma",
         "hero.h1": "Fine line e realismo black and gray no centro de Buenos Aires",
-        "hero.lead": "Somos um estúdio de tatuagem especializado em fine line e realismo black and gray: linhas finas e precisas, e retratos e figuras em preto e cinza com detalhe de foto. Ficamos na San Martín 569, Microcentro, Buenos Aires.",
+        "hero.lead": "Somos um estúdio privado de tatuagem especializado em fine line e realismo black and gray: linhas finas e precisas, e retratos e figuras em preto e cinza com detalhe de foto. Ficamos na San Martín 569, Microcentro, Buenos Aires.",
         "hero.proof": "Nota 5,0 no Google, com mais de 250 avaliações",
         "hero.proofLink": "Ler avaliações",
         "hero.cta": "Conta pra gente sua ideia",
@@ -229,16 +231,17 @@ T = {
         "stay": ["Moro aqui", "Estou de visita"],
     },
     "en": {
+        "hero.kicker": "Private studio · Microcentro",
         "work.title": "Some of our work",
         "cue.work": "Before you choose us, check out our work",
         "cue.reviews": "Before you choose us, check our reviews",
         "meta.title": "Fine line & realism tattoos in Buenos Aires | EDS Tattoo Studio",
-        "meta.desc": "Tattoo studio specializing in fine line and black and grey realism in downtown Buenos Aires. Rated 5.0 on Google from more than 250 reviews. Tell us your idea on WhatsApp.",
+        "meta.desc": "Private tattoo studio specializing in fine line and black and grey realism in downtown Buenos Aires. Rated 5.0 on Google from more than 250 reviews. Tell us your idea on WhatsApp.",
         "og.alt": "Fine line tattoo of the Argentine sun on a shoulder blade",
         "skip": "Skip to the form",
         "nav.lang": "Language",
         "hero.h1": "Fine line and black and grey realism in downtown Buenos Aires",
-        "hero.lead": "We're a tattoo studio specializing in fine line and black and grey realism: fine, precise linework, and portraits and figures in black and grey with photographic detail. Find us at San Martín 569, Microcentro, Buenos Aires.",
+        "hero.lead": "We're a private tattoo studio specializing in fine line and black and grey realism: fine, precise linework, and portraits and figures in black and grey with photographic detail. Find us at San Martín 569, Microcentro, Buenos Aires.",
         "hero.proof": "Rated 5.0 on Google from more than 250 reviews",
         "hero.proofLink": "Read reviews",
         "hero.cta": "Tell us your idea",
@@ -299,16 +302,17 @@ T = {
         "stay": ["I live here", "I'm visiting"],
     },
     "de": {
+        "hero.kicker": "Privates Studio · Microcentro",
         "work.title": "Ein Teil unserer Arbeit",
         "cue.work": "Bevor du dich entscheidest, sieh dir unsere Arbeit an",
         "cue.reviews": "Bevor du dich entscheidest, lies unsere Bewertungen",
         "meta.title": "Fine-Line- und Realismus-Tattoos in Buenos Aires | EDS Tattoo Studio",
-        "meta.desc": "Tattoo-Studio für Fine Line und Black-and-Grey-Realismus im Microcentro von Buenos Aires. 5,0 bei Google mit mehr als 250 Bewertungen. Erzähl uns deine Idee per WhatsApp.",
+        "meta.desc": "Privates Tattoo-Studio für Fine Line und Black-and-Grey-Realismus im Microcentro von Buenos Aires. 5,0 bei Google mit mehr als 250 Bewertungen. Erzähl uns deine Idee per WhatsApp.",
         "og.alt": "Fine-Line-Tattoo der argentinischen Sonne auf dem Schulterblatt",
         "skip": "Zum Formular springen",
         "nav.lang": "Sprache",
         "hero.h1": "Fine Line und Black-and-Grey-Realismus im Zentrum von Buenos Aires",
-        "hero.lead": "Wir sind ein Tattoo-Studio für Fine Line und Black-and-Grey-Realismus: feine, präzise Linien sowie Porträts und Motive in Schwarz und Grau mit fotografischer Detailtiefe. Du findest uns in der San Martín 569, Microcentro, Buenos Aires.",
+        "hero.lead": "Wir sind ein privates Tattoo-Studio für Fine Line und Black-and-Grey-Realismus: feine, präzise Linien sowie Porträts und Motive in Schwarz und Grau mit fotografischer Detailtiefe. Du findest uns in der San Martín 569, Microcentro, Buenos Aires.",
         "hero.proof": "5,0 bei Google mit mehr als 250 Bewertungen",
         "hero.proofLink": "Bewertungen lesen",
         "hero.cta": "Erzähl uns deine Idee",
@@ -696,6 +700,7 @@ def home_page(lang, assets):
 <div class="wrap"><div class="car-progress" aria-hidden="true"><span id="car-fill"></span></div></div>
 </div>
 <div class="wrap hero-text">
+<p class="kicker">{esc(t["hero.kicker"])}</p>
 <h1 id="h-hero">{esc(t["hero.h1"])}</h1>
 <p class="lead">{esc(t["hero.lead"])}</p>
 <p class="proof"><span class="stars" aria-hidden="true">★★★★★</span><span>{esc(t["hero.proof"])}</span></p>

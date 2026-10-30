@@ -201,8 +201,8 @@ h1{font-size:var(--step-3);line-height:1.1}
 .track.train .slide.clone{display:block}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .car-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;margin:6px auto 16px}
-.car-title{font-size:.8125rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--band-ink)}
-.car-title::before{content:"";display:inline-block;width:22px;height:1px;margin-right:10px;vertical-align:middle;background:var(--gold)}
+.car-title,.kicker{font-size:.8125rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--band-ink)}
+.car-title::before,.kicker::before{content:"";display:inline-block;width:22px;height:1px;margin-right:10px;vertical-align:middle;background:var(--gold)}
 /* aviso que invita: píldora de vidrio con un brillo dorado que la cruza y tres flechas que avanzan en fila */
 .cue{
   position:relative;overflow:hidden;isolation:isolate;
@@ -230,6 +230,7 @@ h1{font-size:var(--step-3);line-height:1.1}
 @keyframes cue-chev{0%,100%{opacity:.2;transform:translateX(-3px) rotate(45deg)}45%{opacity:1;transform:translateX(2px) rotate(45deg)}}
 @keyframes cue-shine{0%,55%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
 .hero-text .cue-reviews{justify-self:start}
+.hero-text .kicker{margin-bottom:-6px;color:var(--gold)}
 .car-btn[data-dir="1"] svg{animation:car-nudge 2.6s ease-in-out infinite}
 @keyframes car-nudge{0%,70%,100%{transform:none}80%{transform:translateX(3px)}90%{transform:translateX(-1px)}}
 
