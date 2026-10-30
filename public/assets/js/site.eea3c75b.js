@@ -439,39 +439,86 @@
     io.observe($("idea"));
   }
 
-  /* Carrusel de trabajos: el desplazamiento lo hace el navegador (dedo 1:1, inercia e imán nativos);
-     acá solo se lleva la cuenta, la barrita de avance y las flechas de la computadora */
+  /* Carrusel de trabajos como un tren: corre solo, despacio y sin fin (hay una segunda vuelta igual
+     y al terminar la primera se salta al mismo punto de la otra, sin que se note).
+     Se frena mientras la persona lo toca, lo arrastra, pasa el mouse o usa las flechas, y vuelve a
+     andar a los pocos segundos. Quien pidió menos movimiento en su teléfono lo ve quieto, con imán. */
   function initCarousel() {
     const track = $("track");
     if (!track) return;
-    const slides = track.children;
+    const slides = [...track.querySelectorAll(".slide:not(.clone)")];
+    const n = slides.length;
     const now = $("car-now"), fill = $("car-fill");
-    const btns = document.querySelectorAll(".car-btn");
-    const step = () => {
-      const a = slides[0], b = slides[1];
-      return b ? b.offsetLeft - a.offsetLeft : track.clientWidth;
-    };
-    let ticking = false;
+    const btns = document.querySelectorAll("[data-dir][aria-controls='track']");
+    const train = !reducedMotion() && n > 1;
+    if (train) track.classList.add("train");
+    const firstClone = track.querySelector(".slide.clone");
+    // largo exacto de una vuelta (de la primera foto a su copia); el paso de una foto sale de ahí
+    const lap = () => (train && firstClone ? firstClone.offsetLeft - slides[0].offsetLeft : track.scrollWidth);
+    const step = () => (train ? lap() / n : (slides[1] ? slides[1].offsetLeft - slides[0].offsetLeft : track.clientWidth));
+
+    let pos = 0, lastSet = -1, ticking = false;
     const update = () => {
       ticking = false;
-      const max = track.scrollWidth - track.clientWidth;
-      const x = Math.min(Math.max(track.scrollLeft, 0), max);
-      const i = Math.min(slides.length - 1, Math.round(x / step()));
+      const x = track.scrollLeft;
+      if (train) {
+        // vuelta sin fin: pasada la primera vuelta (o antes del principio) se salta a la copia
+        const L = lap();
+        if (x >= L) { track.scrollLeft = x - L; pos = track.scrollLeft; lastSet = pos; }
+      }
+      const xs = train ? track.scrollLeft % lap() : track.scrollLeft;
+      const i = ((Math.round(xs / step()) % n) + n) % n;
       now.textContent = String(i + 1);
-      const p = max > 0 ? x / max : 1;
-      fill.style.transform = "scaleX(" + Math.max(0.08, p).toFixed(4) + ")";
-      btns.forEach((btn) => {
-        const end = btn.dataset.dir === "-1" ? x <= 2 : x >= max - 2;
-        btn.setAttribute("aria-disabled", String(end));
-      });
+      const max = train ? lap() : Math.max(1, track.scrollWidth - track.clientWidth);
+      fill.style.transform = "scaleX(" + Math.max(0.08, Math.min(1, xs / max)).toFixed(4) + ")";
     };
+
+    // marcha: velocidad suave, más lenta en el celular
+    const SPEED = matchMedia("(max-width: 640px)").matches ? 26 : 38; // px por segundo
+    let running = train, hover = false, visible = true, resumeAt = 0, prev = 0;
+    const holdFor = (ms) => { resumeAt = performance.now() + ms; };
+    const loop = (tm) => {
+      const dt = prev ? Math.min(64, tm - prev) / 1000 : 0;
+      prev = tm;
+      if (running && !hover && visible && !document.hidden && tm >= resumeAt) {
+        if (Math.abs(track.scrollLeft - lastSet) > 2) pos = track.scrollLeft; // la persona lo movió
+        pos += SPEED * dt;
+        const L = lap();
+        if (pos >= L) pos -= L;
+        track.scrollLeft = pos;
+        lastSet = track.scrollLeft;
+      }
+      requestAnimationFrame(loop);
+    };
+
     track.addEventListener("scroll", () => {
+      if (Math.abs(track.scrollLeft - lastSet) > 2) holdFor(3500); // lo está moviendo la persona
       if (!ticking) { ticking = true; requestAnimationFrame(update); }
     }, { passive: true });
     window.addEventListener("resize", update, { passive: true });
+
+    if (train) {
+      track.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") hover = true; });
+      track.addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse") { hover = false; holdFor(600); } });
+      ["pointerdown", "wheel", "keydown", "focusin"].forEach((ev) =>
+        track.addEventListener(ev, () => holdFor(4000), { passive: true }));
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver((es) => { visible = es[0].isIntersecting; }).observe(track);
+      }
+      holdFor(1200); // arranca después de que se vio la primera foto
+      requestAnimationFrame(loop);
+    }
+
+    // flechas y aviso: una foto por toque, siempre alineada; en el tren no hay principio ni fin
     btns.forEach((btn) => btn.addEventListener("click", () => {
-      if (btn.getAttribute("aria-disabled") === "true") return;
-      track.scrollBy({ left: Number(btn.dataset.dir) * step(), behavior: reducedMotion() ? "auto" : "smooth" });
+      const dir = Number(btn.dataset.dir);
+      holdFor(5000);
+      const s = step();
+      let x = track.scrollLeft;
+      if (train && dir < 0 && x < s) { x += lap(); track.scrollLeft = x; }
+      const target = (Math.round(x / s) + dir) * s;
+      track.scrollTo({ left: Math.max(0, target), behavior: reducedMotion() ? "auto" : "smooth" });
+      lastSet = -1;
     }));
     update();
   }

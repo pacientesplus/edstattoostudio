@@ -70,10 +70,13 @@ def hero_preload(assets):
 HERO = {"file": "sol-omoplato.webp", "pos": "50% 58%", "focus": "48% 56%",
         "cap": {"es": "Sol de Mayo, omóplato", "pt": "Sol argentino, omoplata", "en": "Argentine sun, shoulder blade", "de": "Argentinische Sonne, Schulterblatt"}}
 WORKS = [
+    {"file": "maradona-realismo.webp", "pos": "50% 50%", "focus": "52% 36%", "cap": {"es": "Diego Maradona, realismo black and gray", "pt": "Diego Maradona, realismo black and gray", "en": "Diego Maradona, black and grey realism", "de": "Diego Maradona, Black-and-Grey-Realismus"}},
     {"file": "espalda-rama.webp", "pos": "50% 45%", "focus": "36% 32%", "cap": {"es": "Rama y frase, espalda", "pt": "Galho e frase, costas", "en": "Branch and script, back", "de": "Zweig und Schriftzug, Rücken"}},
     {"file": "corazon-linea.webp", "pos": "58% 52%", "focus": "60% 56%", "cap": {"es": "Corazón de una sola línea, antebrazo", "pt": "Coração de uma linha só, antebraço", "en": "Single-line heart, forearm", "de": "Herz aus einer einzigen Linie, Unterarm"}},
+    {"file": "vitruvio-espalda.webp", "pos": "50% 55%", "focus": "50% 37%", "cap": {"es": "Hombre de Vitruvio, espalda", "pt": "Homem Vitruviano, costas", "en": "Vitruvian Man, back", "de": "Vitruvianischer Mensch, Rücken"}},
     {"file": "mariposas-sombra.webp", "pos": "50% 48%", "focus": "60% 42%", "cap": {"es": "Mariposas con sombra, antebrazo", "pt": "Borboletas com sombra, antebraço", "en": "Shaded butterflies, forearm", "de": "Schmetterlinge mit Schattierung, Unterarm"}},
     {"file": "sol-mano.webp", "pos": "50% 45%", "focus": "50% 48%", "cap": {"es": "Sol de Mayo, mano", "pt": "Sol argentino, mão", "en": "Argentine sun, hand", "de": "Argentinische Sonne, Hand"}},
+    {"file": "golondrinas-brazo.webp", "pos": "50% 50%", "focus": "62% 30%", "cap": {"es": "Golondrinas, brazo", "pt": "Andorinhas, braço", "en": "Swallows, arm", "de": "Schwalben, Arm"}},
     {"file": "ramo-color.webp", "pos": "50% 45%", "focus": "46% 48%", "cap": {"es": "Ramo de flores en color, brazo", "pt": "Buquê de flores colorido, braço", "en": "Color flower bouquet, arm", "de": "Farbiger Blumenstrauß, Arm"}},
     {"file": "frase-pierna.webp", "pos": "45% 50%", "focus": "44% 50%", "cap": {"es": "Frase, pierna", "pt": "Frase, perna", "en": "Script, leg", "de": "Schriftzug, Bein"}},
     {"file": "mariposa-violeta.webp", "pos": "50% 47%", "focus": "51% 46%", "cap": {"es": "Mariposa en violeta, antebrazo", "pt": "Borboleta lilás, antebraço", "en": "Purple butterfly, forearm", "de": "Lila Schmetterling, Unterarm"}},
@@ -86,6 +89,9 @@ WORKS = [
 
 T = {
     "es": {
+        "work.title": "Parte de nuestro trabajo",
+        "cue.work": "Antes de elegirnos, chequeá nuestro trabajo",
+        "cue.reviews": "Antes de elegirnos, chequeá nuestras reseñas",
         "meta.title": "Tatuajes fine line y realismo en Buenos Aires | EDS Tattoo Studio",
         "meta.desc": "Estudio de tatuajes especializado en fine line y realismo black and gray, en Microcentro, Buenos Aires. 5,0 en Google con más de 250 reseñas. Contanos tu idea por WhatsApp.",
         "og.alt": "Tatuaje fine line del Sol de Mayo en el omóplato",
@@ -153,6 +159,9 @@ T = {
         "stay": ["Vivo acá", "Estoy de visita"],
     },
     "pt": {
+        "work.title": "Parte do nosso trabalho",
+        "cue.work": "Antes de nos escolher, confira nosso trabalho",
+        "cue.reviews": "Antes de nos escolher, confira nossas avaliações",
         "meta.title": "Tatuagem fine line e realismo em Buenos Aires | EDS Tattoo Studio",
         "meta.desc": "Estúdio de tatuagem especializado em fine line e realismo black and gray, no Microcentro de Buenos Aires. Nota 5,0 no Google com mais de 250 avaliações. Conta sua ideia pelo WhatsApp.",
         "og.alt": "Tatuagem fine line do sol argentino na omoplata",
@@ -220,6 +229,9 @@ T = {
         "stay": ["Moro aqui", "Estou de visita"],
     },
     "en": {
+        "work.title": "Some of our work",
+        "cue.work": "Before you choose us, check out our work",
+        "cue.reviews": "Before you choose us, check our reviews",
         "meta.title": "Fine line & realism tattoos in Buenos Aires | EDS Tattoo Studio",
         "meta.desc": "Tattoo studio specializing in fine line and black and grey realism in downtown Buenos Aires. Rated 5.0 on Google from more than 250 reviews. Tell us your idea on WhatsApp.",
         "og.alt": "Fine line tattoo of the Argentine sun on a shoulder blade",
@@ -287,6 +299,9 @@ T = {
         "stay": ["I live here", "I'm visiting"],
     },
     "de": {
+        "work.title": "Ein Teil unserer Arbeit",
+        "cue.work": "Bevor du dich entscheidest, sieh dir unsere Arbeit an",
+        "cue.reviews": "Bevor du dich entscheidest, lies unsere Bewertungen",
         "meta.title": "Fine-Line- und Realismus-Tattoos in Buenos Aires | EDS Tattoo Studio",
         "meta.desc": "Tattoo-Studio für Fine Line und Black-and-Grey-Realismus im Microcentro von Buenos Aires. 5,0 bei Google mit mehr als 250 Bewertungen. Erzähl uns deine Idee per WhatsApp.",
         "og.alt": "Fine-Line-Tattoo der argentinischen Sonne auf dem Schulterblatt",
@@ -646,6 +661,13 @@ def home_page(lang, assets):
         f'<figure class="work"><div class="work-photo" data-loupe>{photo(w, lang, assets, "work", eager=(i == 0))}</div>'
         f'<figcaption>{esc(w["cap"][lang])}</figcaption></figure></li>'
         for i, w in enumerate(shots))
+    # Tren: una segunda vuelta igual, para que el carrusel corra sin fin. Solo se muestra con el tren prendido
+    # (site.js); queda fuera del lector de pantalla y del teclado.
+    slides += "\n" + "\n".join(
+        f'<li class="slide clone" aria-hidden="true" inert>'
+        f'<figure class="work"><div class="work-photo" data-loupe>{photo(w, lang, assets, "work")}</div>'
+        f'<figcaption>{esc(w["cap"][lang])}</figcaption></figure></li>'
+        for w in shots)
     runtime = {"lang": lang, "locale": LOCALE[lang], "apiLang": API_LANG[lang],
                "t": {k: t[k] for k in RUNTIME_KEYS},
                "sizes": t["sizes"], "sizesEs": T["es"]["sizes"]}
@@ -656,12 +678,16 @@ def home_page(lang, assets):
 {top(lang, paths, path)}
 </div>
 <section class="showcase" id="trabajos" aria-labelledby="h-hero">
+<div class="wrap car-head">
+<p class="car-title">{esc(t["work.title"])}</p>
+<button type="button" class="cue" data-dir="1" aria-controls="track"><span>{esc(t["cue.work"])}</span><span class="cue-arrows" aria-hidden="true"><i></i><i></i><i></i></span></button>
+</div>
 <div class="carousel">
 <ul class="track" id="track" tabindex="0" aria-roledescription="carrusel" aria-label="{esc(t["work.h2"])}">
 {slides}
 </ul>
 <div class="wrap car-bar">
-<p class="car-hint"><span class="car-count" aria-hidden="true"><b id="car-now">1</b> / {n}</span> {esc(t["car.hint"])}</p>
+<p class="car-hint"><span class="car-count" aria-hidden="true"><b id="car-now">1</b> / {n}</span><span class="sr-only">{esc(t["car.hint"])}</span></p>
 <div class="car-nav">
 <button type="button" class="car-btn" data-dir="-1" aria-controls="track" aria-label="{esc(t["car.prev"])}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
 <button type="button" class="car-btn" data-dir="1" aria-controls="track" aria-label="{esc(t["car.next"])}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
@@ -672,7 +698,8 @@ def home_page(lang, assets):
 <div class="wrap hero-text">
 <h1 id="h-hero">{esc(t["hero.h1"])}</h1>
 <p class="lead">{esc(t["hero.lead"])}</p>
-<p class="proof"><span class="stars" aria-hidden="true">★★★★★</span><span>{esc(t["hero.proof"])}</span><a href="{esc(MAPS_REVIEWS)}" target="_blank" rel="noopener">{esc(t["hero.proofLink"])}</a></p>
+<p class="proof"><span class="stars" aria-hidden="true">★★★★★</span><span>{esc(t["hero.proof"])}</span></p>
+<a class="cue cue-reviews" href="{esc(MAPS_REVIEWS)}" target="_blank" rel="noopener"><span>{esc(t["cue.reviews"])}</span><span class="cue-arrows" aria-hidden="true"><i></i><i></i><i></i></span></a>
 <a class="btn" id="hero-cta" href="#idea">{esc(t["hero.cta"])}</a>
 </div>
 </section>
